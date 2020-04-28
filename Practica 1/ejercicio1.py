@@ -1,25 +1,28 @@
 
-import numpy as np
 import cv2 as cv
+import numpy as np
 from matplotlib import pyplot as plt
 
-original = cv.imread('thresh1.png', 0)
+image = cv.imread('thresh1.png', 0)
+cv.imshow('Original Imagen',image)
 
-plt.hist(original.ravel(),256,[0,256]); plt.show()
+plt.hist(image.ravel(),256,[0,256]); plt.show()
 
-width = original.shape[0]
-height = original.shape[1]
+heigth = image.shape[0]
+width = image.shape[1]
 
-resultado = np.zeros((width, height, 1),np.uint8)
+healthy_cell = np.zeros((heigth, width, 1),np.uint8)
 
-for i in range(height):
-	for j in range(width-1):
-		if original[i-1,j-1]>100 and original[i-1,j-1]<170:
-			resultado[i-1,j-1] = 0 
+for x in range(0, heigth, 1):
+    for y in range(0, width, 1):
+        color = image[x][y]
+        if 130 < color < 170:
+        	healthy_cell[x][y] = 255
+        else:
+        	healthy_cell[x][y] = 0        		
 
-cv.imshow('ImageWindow',resultado)
-cv.waitKey(0) 
+cv.imshow('Healthy',healthy_cell)
+cv.waitKey(0)
 cv.destroyAllWindows()
 cv.waitKey(1) 
 exit()
-
