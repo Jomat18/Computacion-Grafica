@@ -8,7 +8,10 @@ image = cv.imread('thresh2.png', 0)
 cv.imshow('Original Imagen',image)
 
 # Generating histogram
-plt.hist(image.ravel(),256,[0,256]); plt.show()
+plt.title("Histogram") 
+plt.hist(image.ravel(),256,[0,256]); 
+plt.savefig('histogram2.png')
+plt.show()
 
 # Dimensions
 heigth = image.shape[0]
@@ -34,6 +37,7 @@ filename = 'resultado2.png'
 # Saving the image 
 cv.imwrite(filename, healthy_cell) 
 
+print ("Presione una tecla para cerrar")
 cv.waitKey(0)
 cv.destroyAllWindows()
 cv.waitKey(1) 
