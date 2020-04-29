@@ -8,8 +8,10 @@ image = cv.imread('thresh1.png', 0)
 cv.imshow('Original Imagen',image)
 
 # Generating histogram
-plt.title("Histogram") 
+plt.title("Histograma  of thresh1") 
 plt.hist(image.ravel(),256,[0,256]); 
+plt.xlabel('lighting intensity')
+plt.ylabel('number of pixels')
 plt.savefig('histogram1.png')
 plt.show()
 
