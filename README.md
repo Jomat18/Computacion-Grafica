@@ -1,5 +1,9 @@
 # Computacion Grafica
 
+#Primera Practica 
+
+>Thresholding
+
 ## Integrantes
 
 * PILCO PANCCA, LUZ MARINA
