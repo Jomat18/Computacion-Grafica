@@ -4,7 +4,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # loading image
-image = cv.imread('thresh1.png', 0)
+image = cv.imread('thresh2.png', 0)
 cv.imshow('Original Imagen',image)
 
 # Generating histogram
