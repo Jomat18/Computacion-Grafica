@@ -15,19 +15,19 @@ heigth = image.shape[0]
 width = image.shape[1]
 
 # Creating matrix
-healthy_cell = np.zeros((heigth, width, 1),np.uint8)
+harvests = np.zeros((heigth, width, 1),np.uint8)
 
 # Thresholding
 for x in range(0, heigth, 1):
     for y in range(0, width, 1):
         color = image[x][y]
         if 162	 < color < 177:
-        	healthy_cell[x][y] = 255
+        	harvests[x][y] = 255
         else:
-        	healthy_cell[x][y] = 0        		
+        	harvests[x][y] = 0        		
 
 
-cv.imshow('Healthy',healthy_cell)
+cv.imshow('Harvests',harvests)
 cv.waitKey(0)
 cv.destroyAllWindows()
 cv.waitKey(1) 
