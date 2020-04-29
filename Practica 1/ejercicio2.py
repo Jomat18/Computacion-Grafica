@@ -24,7 +24,7 @@ healthy_cell = np.zeros((heigth, width, 1),np.uint8)
 for x in range(0, heigth, 1):
     for y in range(0, width, 1):
         color = image[x][y]
-        if 130 < color < 170:
+        if 185 < color < 190:
         	healthy_cell[x][y] = 255
         else:
         	healthy_cell[x][y] = 0        		
