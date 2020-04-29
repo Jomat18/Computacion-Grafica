@@ -1,6 +1,6 @@
 # Computacion Grafica
 
-#Primera Practica 
+## Primera Practica 
 
 >Thresholding
 
@@ -10,4 +10,5 @@
 * SEJJE CONDORI, ERIKA
 * GOMEZ CONTRERAS, JUNIOR
 * TORRES LIMA, JOSE 
+
 	
