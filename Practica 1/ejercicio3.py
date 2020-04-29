@@ -9,18 +9,21 @@ gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
 cv.imshow('Original Imagen',image)
 
 # Generating greyscale histogram 
-plt.title("Greyscale Histogram") 
+plt.title("Greyscale Histogram thresh3") 
 plt.hist(gray.ravel(),256,[0,256]);
+plt.xlabel('lighting intensity')
+plt.ylabel('number of pixels')
 plt.savefig('greyscale_histogram3.png')
 plt.show()
 
 # Generating color histogram 
-plt.title("Color Histogram") 
+plt.title("Color Histogram thresh3") 
 for i, col in enumerate(['b', 'g', 'r']):
     hist = cv.calcHist([image], [i], None, [256], [0, 256])
     plt.plot(hist, color = col)
     plt.xlim([0, 256])
-    
+plt.xlabel('lighting intensity')
+plt.ylabel('number of pixels')
 plt.savefig('color_histogram3.png')    
 plt.show()
 
