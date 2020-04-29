@@ -28,6 +28,12 @@ for x in range(0, heigth, 1):
 
 
 cv.imshow('Healthy',healthy_cell)
+
+filename = 'resultado1.png'
+  
+# Saving the image 
+cv.imwrite(filename, healthy_cell) 
+
 cv.waitKey(0)
 cv.destroyAllWindows()
 cv.waitKey(1) 
