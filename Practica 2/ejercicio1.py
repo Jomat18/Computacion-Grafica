@@ -34,6 +34,10 @@ for x in range(0, heigth, 1):
     	Contrast[x][y] = aux * ((b-a)/(d-c)) + a 
 cv.imshow('Contrast',Contrast)
 
+filename = 'resultado1.png'
+
+cv.imwrite(filename, Contrast) 
+
 print ("Presione una tecla para cerrar")
 cv.waitKey(0)
 cv.destroyAllWindows()
