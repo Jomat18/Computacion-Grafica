@@ -20,6 +20,9 @@ plt.ylabel('cantidad de pixeles')
 plt.savefig('histogram1_1.png')
 plt.show()
 
+
+(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(img)
+
 # Dimensions
 heigth = img.shape[0]
 width = img.shape[1]
@@ -28,11 +31,10 @@ width = img.shape[1]
 Contrast = np.zeros((heigth, width, 1),np.uint8)
 
 # Contrast Stretching
-a = 0
-b = 255
-c = 56
-d = 139
-
+a=0
+b=255
+c=minVal 
+d=maxVal 
 temp = (b - a)/(d - c)
 
 for x in range(0, heigth, 1):
@@ -54,7 +56,7 @@ filename = 'resultado1.png'
 # Saving the image 
 cv.imwrite(filename, Contrast) 
 
-print ("Presione una tecla para cerrar")
+#print ("Presione una tecla para cerrar")
 cv.waitKey(0)
 cv.destroyAllWindows()
 cv.waitKey(1) 
