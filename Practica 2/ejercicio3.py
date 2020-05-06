@@ -5,20 +5,14 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # loading image
+cantidad = int(sys.argv[1])
+
 img = cv.imread('contr2.jpg', cv.IMREAD_GRAYSCALE)
 cv.imshow('Original Imagen', img)
 
 if img.size == 0:
     sys.exit("Error: the image has not been correctly loaded.")
 
-# Generating histogram
-hist = cv.calcHist([img], [0], None, [256], [0, 256])
-plt.plot(hist, color='gray' )
-plt.title("Histograma  of image") 
-plt.xlabel('intensidad de iluminacion')
-plt.ylabel('cantidad de pixeles')
-plt.savefig('histogram1_1.png')
-plt.show()
 
 # Dimensions
 heigth = img.shape[0]
@@ -27,11 +21,27 @@ width = img.shape[1]
 # Creating matrix
 Contrast = np.zeros((heigth, width, 1),np.uint8)
 
+colores = np.zeros((heigth, width, 1),np.uint8)
+
 # Contrast Stretching
+
+for x in range(0, heigth, 1):
+    for y in range(0, width, 1):
+    	colores[x][y] = img[x][y]
+
+
+colores = np.sort(colores, axis = None)   
+lower = int((cantidad/100)*(heigth*width))
+higher = int(((100-cantidad)/100)*(heigth*width))
+
+print (cantidad,'%',' y ', 100-cantidad, '%')
+
 a = 0
 b = 255
-c = 56
-d = 139
+c = int(colores[lower])
+d = int(colores[higher-1])
+
+print ('c :', c, 'd:', d)
 
 temp = (b - a)/(d - c)
 
@@ -42,14 +52,14 @@ for x in range(0, heigth, 1):
 cv.imshow('Contrast',Contrast)
 
 hist = cv.calcHist([Contrast], [0], None, [256], [0, 256])
-plt.title("Histograma  of Contrast") 
+plt.title("Histograma  of Outlier 1") 
 plt.plot(hist, color='gray' )
 plt.xlabel('lighting intensity')
 plt.ylabel('number of pixels')
-plt.savefig('histogram1_2.png')
+plt.savefig('histogram3_2.png')
 plt.show()
 
-filename = 'resultado1.png'
+filename = 'resultado3_2.png'
 
 # Saving the image 
 cv.imwrite(filename, Contrast) 
