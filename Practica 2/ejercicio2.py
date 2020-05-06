@@ -30,7 +30,7 @@ cv.imshow('Contrast',Contrast)
 
 # Generating histogram
 hist = cv.calcHist([Contrast], [0], None, [256], [0, 256])
-plt.title("Histograma  of Contrast") 
+plt.title("Histograma  of Outlier") 
 plt.plot(hist, color='gray' )
 plt.xlabel('lighting intensity')
 plt.ylabel('number of pixels')
