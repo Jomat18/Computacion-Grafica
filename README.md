@@ -4,6 +4,10 @@
 
 >Thresholding
 
+## Segunda Practica 
+
+>Contrast Stretching
+
 ## Integrantes
 
 * PILCO PANCCA, LUZ MARINA
