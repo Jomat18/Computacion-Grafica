@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 # loading image
 cantidad = int(sys.argv[1])
 
-img = cv.imread('contr2.jpg', cv.IMREAD_GRAYSCALE)
+img = cv.imread('resultado2.png', cv.IMREAD_GRAYSCALE)
 cv.imshow('Original Imagen', img)
 
 if img.size == 0:
