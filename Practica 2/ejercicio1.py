@@ -30,8 +30,8 @@ Contrast = np.zeros((heigth, width, 1),np.uint8)
 # Contrast Stretching
 a = 0
 b = 255
-c = 50
-d =	144
+c = 52
+d =	142
 
 temp = (b - a)/(d - c)
 
