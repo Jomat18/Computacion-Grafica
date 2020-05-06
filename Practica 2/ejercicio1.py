@@ -20,7 +20,7 @@ plt.ylabel('cantidad de pixeles')
 plt.savefig('histogram1_1.png')
 plt.show()
 
-
+# Valores minimos y maximos 
 (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(img)
 
 # Dimensions
