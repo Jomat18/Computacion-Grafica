@@ -8,6 +8,11 @@
 
 >Contrast Stretching
 
+## Tercera Practica 
+
+>Histogram equalization
+
+
 ## Integrantes
 
 * PILCO PANCCA, LUZ MARINA
