@@ -5,6 +5,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # loading image
+print sys.argv[1]
+print int(sys.argv[1])
 cantidad = int(sys.argv[1])
 
 img = cv.imread('resultado2.png', cv.IMREAD_GRAYSCALE)
@@ -12,6 +14,7 @@ cv.imshow('Original Imagen', img)
 
 if img.size == 0:
     sys.exit("Error: the image has not been correctly loaded.")
+
 
 
 # Dimensions
