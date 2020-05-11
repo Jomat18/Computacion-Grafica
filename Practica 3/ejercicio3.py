@@ -8,7 +8,6 @@ def escribiendo_resultado(nueva_imagen, img, heigth, width, h, w, s_n):
     for i in range(heigth):
         for j in range(width):
             nueva_imagen[i][j] = int(s_n[img[i][j]])
-            #nueva_imagen[h+i][w+j] = int(s_n[img[i][j]])
 
 
 def calculando_histograma(img, heigth, width, intensidad):
@@ -34,14 +33,14 @@ def ecualizacion(heigth, width, s_n, L, histograma):
 
 def segmento(f, c, x, y, img, intensidad, s_n, nueva_imagen): #f -> fila c -> columna  
     crop_img = img[f:f+y, c:c+x]
-    #print (crop_img.shape[0], crop_img.shape[1])  
     cv.imshow('Crop',crop_img) 
+    cv.imwrite('crop.png', crop_img) 
+    
     heigth = crop_img.shape[0]
     width = crop_img.shape[1]
 
     histograma = calculando_histograma(crop_img, heigth, width, intensidad)
     ecualizacion(heigth, width, s_n, intensidad, histograma)
-    #escribiendo_resultado(nueva_imagen, crop_img, heigth, width, f, c, s_n)
 
     heigth = img.shape[0]
     width = img.shape[1]
@@ -65,12 +64,6 @@ if __name__ == "__main__":
 
     s_n = np.zeros(intensidad ,np.float32)
 
-    #tiled_x = 412
-    #tiled_y = 663
-    
-    # for i in range(int(heigth/tiled_y)):
-    #     for j in range(int(width/tiled_x)):    
-            #segmento(i*tiled_y, j*tiled_x, tiled_x, tiled_y, img, intensidad, s_n, nueva_imagen)
     segmento(320, 200, 100, 120, img, intensidad, s_n, nueva_imagen)
 
     hist = cv.calcHist([nueva_imagen], [0], None, [256], [0, 256])
