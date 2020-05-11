@@ -1,12 +1,15 @@
 import cv2 as cv
+import sys
 import numpy as np
 from matplotlib import pyplot as plt
 import math
 
 intensidad = 256
 
+filename = sys.argv[1]
+
 # Leer imagen
-img = cv.imread('hist10_1.jpg', cv.IMREAD_GRAYSCALE)
+img = cv.imread(filename + '.jpg', cv.IMREAD_GRAYSCALE)
 
 # pixels para calcular el histograma
 pixels = np.zeros((intensidad, 1) ,np.float32)
@@ -46,13 +49,13 @@ plt.plot(hist, color='gray' )
 plt.title("Histograma  del resultado") 
 plt.xlabel('intensidad de iluminacion')
 plt.ylabel('cantidad de pixeles')
-plt.savefig('histograma.png')
+plt.savefig('hist_' + filename + '.png')
 plt.show()
 
 cv.imshow('Resultado',nueva_imagen)
 
 # Guardando la imagen
-cv.imwrite('Resultado.png', nueva_imagen) 
+cv.imwrite('resultado_'+ filename +'.png', nueva_imagen) 
 
 cv.waitKey(0)
 cv.destroyAllWindows()
