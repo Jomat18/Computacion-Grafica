@@ -5,8 +5,6 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # loading image
-print sys.argv[1]
-print int(sys.argv[1])
 cantidad = int(sys.argv[1])
 
 img = cv.imread('resultado2.png', cv.IMREAD_GRAYSCALE)
