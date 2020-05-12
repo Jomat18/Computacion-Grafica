@@ -12,6 +12,9 @@
 
 >Histogram equalization
 
+## Cuarta Practica 
+
+>Logarithm Operator
 
 ## Integrantes
 
