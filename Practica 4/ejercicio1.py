@@ -25,10 +25,15 @@ Logarithm = np.zeros((heigth, width, 1),np.uint8)
 
 
 #aplicamos Logarithm Operator
-c = 70
+c = 120
 for x in range(0, heigth, 1):
     for y in range(0, width, 1):
-    	Logarithm[x][y] = c * math.log10( 1 + image[x][y] )
+    	aux = c * math.log10( (1 + image[x][y]) )
+    	if (aux > 255):
+    		aux = 255
+    	if (aux < 0):
+    		aux = 0
+    	Logarithm[x][y] = aux
 
 
 
@@ -37,12 +42,12 @@ plt.title("Histograma  of resul log_1.jpg")
 plt.hist(Logarithm.ravel(),256,[0,256]) 
 plt.xlabel('lighting intensity')
 plt.ylabel('number of pixels')
-plt.savefig('histogramOfResult1.png')
+plt.savefig('histogramOfResult1-120.png')
 plt.show()
 
 # Guardamos la imagen
 cv.imshow('Logarithm',Logarithm)
-filename = 'resultado1-70.png'
+filename = 'resultado1-120.png'
 cv.imwrite(filename, Logarithm) 
 
 cv.waitKey(0)
