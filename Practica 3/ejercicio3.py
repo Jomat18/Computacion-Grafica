@@ -1,9 +1,10 @@
+import sys
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 import math
 
-def escribiendo_resultado(nueva_imagen, img, heigth, width, h, w, s_n):
+def escribiendo_resultado(nueva_imagen, img, heigth, width, s_n):
     # Nueva imagen
     for i in range(heigth):
         for j in range(width):
@@ -44,13 +45,15 @@ def segmento(f, c, x, y, img, intensidad, s_n, nueva_imagen): #f -> fila c -> co
 
     heigth = img.shape[0]
     width = img.shape[1]
-    escribiendo_resultado(nueva_imagen, img, heigth, width, f, c, s_n)
+    escribiendo_resultado(nueva_imagen, img, heigth, width, s_n)
 
 
 if __name__ == "__main__":
 
+    filename = sys.argv[1]
+
     # Leer imagen
-    img = cv.imread('hist10_1.jpg', cv.IMREAD_GRAYSCALE)
+    img = cv.imread(filename , cv.IMREAD_GRAYSCALE)
 
     # Dimensiones de la imagen
     heigth = img.shape[0]
