@@ -16,6 +16,10 @@
 
 >Logarithm Operator
 
+## Quinta Practica 
+
+>Operador exponencial
+
 ## Integrantes
 
 * PILCO PANCCA, LUZ MARINA
