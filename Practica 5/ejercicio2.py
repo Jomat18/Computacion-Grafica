@@ -6,13 +6,13 @@ import argparse
 import math
 
 
-def mostrar_guardar(operador, imagen, filename):
+def mostrar_guardar(operador, imagen, filename,c,r):
     # Mostrando y guardando la imagen del resultado
     cv.imshow('Resultado - ' + operador, imagen)
-    cv.imwrite('resultado_' + operador + '_' + filename + '.png', imagen) 
+    cv.imwrite('resultado_' + operador + '_' + filename + ' Con ' + str(c) + '_' + str(r) + '.png', imagen) 
 
 
-def mostrar_histograma(operador, imagen, filename):
+def mostrar_histograma(operador, imagen, filename,c,r):
 
     # Generando histograma del resultado
     hist = cv.calcHist([imagen], [0], None, [256], [0, 256])
@@ -20,7 +20,7 @@ def mostrar_histograma(operador, imagen, filename):
     plt.title("Histograma") 
     plt.xlabel('intensidad de iluminacion')
     plt.ylabel('cantidad de pixeles')
-    plt.savefig('hist_' + operador + '_' + filename + '.png')
+    plt.savefig('hist_' + operador + '_' + filename + ' Con ' + str(c)+ '_'+ str(r) + '.png')
     plt.show()
 
 
@@ -63,8 +63,8 @@ if __name__ == "__main__":
     operador = 'raiz'
 
     nueva_imagen = operador_raizCuadrada(c, r, img, heigth, width, nueva_imagen)
-    mostrar_histograma(operador, nueva_imagen, filename)
-    mostrar_guardar(operador, nueva_imagen, filename)
+    mostrar_histograma(operador, nueva_imagen, filename, c, r)
+    mostrar_guardar(operador, nueva_imagen, filename, c, r)
 
     cv.waitKey(0)
     cv.destroyAllWindows()
