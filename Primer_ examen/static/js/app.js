@@ -54,7 +54,11 @@ $(document).ready(function() {
                 },
             type: 'POST'
         }).done(function(data) {
-            $("#imagen").prop("src", '/static/images/' + data.name);
+            var source = '/static/images/' +data.name,
+            timestamp = (new Date()).getTime(),
+            newUrl = source + '?_=' + timestamp;
+            document.getElementById("imagen").src = newUrl;
+            
         }).fail(function() {
             console.log('Failed');
         });        
