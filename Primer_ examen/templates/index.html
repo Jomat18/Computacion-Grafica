@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computacion Grafica</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename = 'js/app.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css')}}">
+</head>
+   <body>
+    <header>
+      <nav>
+          <div class="logo">
+              <h4>Computacion Grafica</h4>
+          </div>
+      </nav>       
+  </header>
+  <main class="main">
+    <div class="container">
+     <form enctype="multipart/form-data">
+        <label for="valor-a"> A</label>       
+        <input type="text" id="valor-a">
+        <label for="valor-b"> B</label>       
+        <input type="text" id="valor-b">
+        <label for="valor-c"> C</label>       
+        <input type="text" id="valor-c">
+        <label for="valor-d"> D</label>       
+        <input type="text" id="valor-d">
+        <label for="valor-r">R</label>
+        <input type="range" id="valor-r" name="valor-r" min="0" max="200"/>
+        <label for="operadores">Operadores</label>
+        <select name="opcion" id="operadores">
+            <option value="logaritmo">Logaritm</option>
+            <option value="contrast">Contrast</option>
+            <option value="exponencial">Exponencial</option>
+        </select>
+        <button type="submit">Calcular</button>
+     </form>
+    </div>    
+
+    <div class="imagen">
+      <input type="file" id="file" name="file" />
+      <span id="cargando"></span>
+      <img src="" id="imagen"/>
+    </div> 
+  </main>    
+   </body>
+</html>
