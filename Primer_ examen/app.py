@@ -34,6 +34,7 @@ def calcular():
     operador = request.form['operador']
 
     # Aqui llamar a las funciones
+    os.system('python operadores.py static/images/'+filename +' '+ valor_c)
 
     return jsonify(name = filename)
 
