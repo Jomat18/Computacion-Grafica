@@ -1,0 +1,46 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(210, 219, 210);
+}
+
+.main {
+    padding-top: 50px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    min-height: 8vh;
+    background-color:rgba(118, 70, 158, 0.5);
+    top: 0px;
+    width: 100%;
+    height: 50px;
+}
+
+.logo{
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 15px;
+    padding-left: 50px;
+    padding-top: 7px;
+}
+
+div {
+    width: 30%;
+    height: 70%;
+}
+
+div img {
+    position: absolute; 
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
