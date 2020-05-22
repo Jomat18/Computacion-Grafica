@@ -46,7 +46,7 @@ if __name__ == "__main__":
     filename = filename.split(".")[0]    
 
     # Operaciones
-    operador = 'raiz'
+    operador = 'raizToPower'
 
     nueva_imagen = operador_raizCuadrada(c, r, img, heigth, width, nueva_imagen)
     mostrar_guardar(operador, nueva_imagen, filename)
