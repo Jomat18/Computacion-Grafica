@@ -8,8 +8,14 @@ import math
 
 def mostrar_guardar(operador, imagen, filename,mi,ma):
     # Mostrando y guardando la imagen del resultado
-    cv.imshow('Resultado - ' + operador, imagen)
-    cv.imwrite('resultado_' + operador + '_' + filename + ' Con ' + str(mi) + '_' + str(ma) + '.png', imagen) 
+    #cv.imshow('Resultado - ' + operador, imagen)
+    #cv.imwrite('resultado_' + operador + '_' + filename + ' Con ' + str(mi) + '_' + str(ma) + '.png', imagen) 
+    filename='resultado.png'
+    ruta_output="static/output/"
+    # Saving the image 
+
+    cv.imwrite(ruta_output+filename, imagen) 
+
 
 
 def Thresholding(mi, ma, img, heigth, width, nueva_imagen):
