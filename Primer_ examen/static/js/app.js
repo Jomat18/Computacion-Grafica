@@ -24,18 +24,15 @@ $(document).ready(function() {
                 url: '/mostrar',
                 contentType: false,
                 cache: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#cargando').html("<label style='color: green;'>Cargando imagen...</label>");
-                }
+                processData: false
             })
             .done(function(data) {
                 if(data.error) {
                     console.log("Error");
                 }
                 else {
+                    console.log(data.name)
                     $("#imagen").prop("src", '/static/images/' + data.name);
-                    $('#cargando').html("<label style='color: blue;'>Imagen Cargada!</label>");
                 }
             });
         }        
@@ -45,10 +42,10 @@ $(document).ready(function() {
         event.preventDefault();     
         $.ajax({ 
             url: '/calcular',
-            data: { valor_a: $('#valor-a').val(),
+            data: { porcentaje: $('#porcentaje').val(),
+                    valor_a: $('#valor-a').val(),
                     valor_b: $('#valor-b').val(),
                     valor_c: $('#valor-c').val(),
-                    valor_d: $('#valor-d').val(),
                     valor_r: $('#valor-r').val(),
                     operador: $('#operador').val()
                 },
