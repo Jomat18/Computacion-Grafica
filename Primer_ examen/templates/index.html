@@ -17,21 +17,25 @@
   <main class="main">
     <div class="container">
      <form enctype="multipart/form-data">
+        <label for="porcentaje"> %</label>       
+        <input class="boton" type="text" id="porcentaje">
         <label for="valor-a"> A</label>       
-        <input type="text" id="valor-a">
+        <input class="boton" type="text" id="valor-a">
         <label for="valor-b"> B</label>       
-        <input type="text" id="valor-b">
+        <input class="boton" type="text" id="valor-b">
         <label for="valor-c"> C</label>       
-        <input type="text" id="valor-c">
-        <label for="valor-d"> D</label>       
-        <input type="text" id="valor-d">
+        <input class="boton" type="text" id="valor-c">
         <label for="valor-r">R</label>
-        <input type="range" id="valor-r" name="valor-r" min="0" max="5" step="0.01">
+        <input class="barra" type="range" id="valor-r" name="valor" min="1" max="2" step="0.1" oninput="this.form.amountInput.value=this.value" />
+        <input id=out type="number" name="amountInput" min="1" max="2" value="1.5" step="0.1" oninput="this.form.valor.value=this.value" />
         <label for="operador">Operadores</label>
         <select name="opcion" id="operador">
-            <option value="logaritmo">Logaritm</option>
-            <option value="contrast">Contrast</option>
+            <option value="raizC">RaizC</option>
             <option value="exponencial">Exponencial</option>
+            <option value="logaritmo">Logaritmo</option>
+            <option value="equalizacion">Equalizacion</option>
+            <option value="contrast">Contrast</option>
+            <option value="thresholding">Thresholding</option>
         </select>
         <button type="submit">Calcular</button>
      </form>
@@ -39,7 +43,6 @@
 
     <div class="imagen">
       <input type="file" id="file" name="file"/>
-      <span id="cargando"></span>
       <img src="" id="imagen"/>
     </div> 
   </main>   
