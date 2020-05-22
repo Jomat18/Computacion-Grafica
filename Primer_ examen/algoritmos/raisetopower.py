@@ -7,8 +7,13 @@ import math
 
 def mostrar_guardar(operador, imagen, filename):
     # Mostrando y guardando la imagen del resultado
-    cv.imshow('Resultado - ' + operador, imagen)
-    cv.imwrite('resultado_' + operador + '_' + filename + '.png', imagen) 
+    #cv.imshow('Resultado - ' + operador, imagen)
+    #cv.imwrite('resultado_' + operador + '_' + filename + '.png', imagen) 
+    filename='resultado.png'
+    ruta_output="static/output/"
+    # Saving the image 
+
+    cv.imwrite(ruta_output+filename, imagen) 
 
 
 def operador_raizCuadrada(c, r, img, heigth, width, nueva_imagen):
