@@ -1,3 +1,4 @@
+import sys
 import cv2 as cv
 import numpy as np
 import math
@@ -23,3 +24,21 @@ def operador_logaritmo(c, img):
             nueva_imagen[i][j] = temp
 
     return nueva_imagen
+
+if __name__ == "__main__":
+
+    filename = sys.argv[1]
+    c = int(sys.argv[2])
+
+    # Leer imagen
+    img = cv.imread(filename , cv.IMREAD_GRAYSCALE)
+
+    # Funciones
+    nueva_imagen = operador_logaritmo(c, img)
+
+    # Guardando la imagen del resultado
+    cv.imwrite(filename, nueva_imagen) 
+    
+    cv.destroyAllWindows()
+    cv.waitKey(1) 
+    exit()
