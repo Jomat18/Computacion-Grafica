@@ -1,48 +1,236 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Computacion Grafica</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>Computación Grafica</title>
+    <link href="http://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet" />
+    <link href="static/css/default.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/fonts.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 6]>
+    <link href="default_ie6.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/css/style.css">
-</head>
-   <body>
-    <header>
-      <nav>
-          <div class="logo">
-              <h4>Computacion Grafica</h4>
-          </div>
-      </nav>       
-  </header>
-  <main class="main">
-    <div class="container">
-     <form enctype="multipart/form-data">
-        <label for="valor-a"> A</label>       
-        <input type="text" id="valor-a">
-        <label for="valor-b"> B</label>       
-        <input type="text" id="valor-b">
-        <label for="valor-c"> C</label>       
-        <input type="text" id="valor-c">
-        <label for="valor-d"> D</label>       
-        <input type="text" id="valor-d">
-        <label for="valor-r">R</label>
-        <input type="range" id="valor-r" name="valor-r" min="0" max="5" step="0.01">
-        <label for="operador">Operadores</label>
-        <select name="opcion" id="operador">
-            <option value="logaritmo">Logaritm</option>
-            <option value="contrast">Contrast</option>
-            <option value="exponencial">Exponencial</option>
-        </select>
-        <button type="submit">Calcular</button>
-     </form>
-    </div>    
+    <script language="javascript">
+      $(document).ready(function(){
+            $( "#datos_thresholding" ).hide();
+            $( "#datos_contrast" ).hide();
+            $( "#datos_ecualizacion" ).hide();
+            $( "#datos_logaritmico_raiz" ).hide();
+            $( "#datos_exponencial" ).hide();
+            $( "#datos_raise" ).hide();
+   
+            $("#operador").change(function(){
+                var valor=$(this).val();
+                if(valor==0){
 
-    <div class="imagen">
-      <input type="file" id="file" name="file"/>
-      <span id="cargando"></span>
-      <img src="" id="imagen"/>
-    </div> 
-  </main>   
-  <script src="/static/js/app.js"></script> 
-   </body>
+                  $( "#datos_thresholding" ).hide();
+                  $( "#datos_contrast" ).hide();
+                  $( "#datos_ecualizacion" ).hide();
+                  $( "#datos_logaritmico_raiz" ).hide();
+                  $( "#datos_exponencial" ).hide();
+                  $( "#datos_raise" ).hide();
+
+                }else if(valor=='thresholding'){
+
+                  $( "#datos_contrast" ).hide();
+                  $( "#datos_ecualizacion" ).hide();
+                  $( "#datos_logaritmico_raiz" ).hide();
+                  $( "#datos_exponencial" ).hide();
+                  $( "#datos_raise" ).hide();
+                  $( "#datos_thresholding" ).show();
+
+                }else if(valor=='contrast'){
+                  
+                  $( "#datos_ecualizacion" ).hide();
+                  $( "#datos_logaritmico_raiz" ).hide();
+                  $( "#datos_exponencial" ).hide();
+                  $( "#datos_raise" ).hide();
+                  $( "#datos_thresholding" ).hide();
+                  $( "#datos_contrast" ).show();
+
+                }else if(valor=='ecualizacion'){
+                  
+                  $( "#datos_contrast" ).hide();                  
+                  $( "#datos_logaritmico_raiz" ).hide();
+                  $( "#datos_exponencial" ).hide();
+                  $( "#datos_raise" ).hide();
+                  $( "#datos_thresholding" ).hide();
+                  $( "#datos_ecualizacion" ).show();
+
+                }else if(valor=='logaritmico'){
+                  
+                  $( "#datos_contrast" ).hide();      
+                  $( "#datos_exponencial" ).hide();
+                  $( "#datos_raise" ).hide();
+                  $( "#datos_thresholding" ).hide();
+                  $( "#datos_ecualizacion" ).hide();
+                  $( "#datos_logaritmico_raiz" ).show();
+                }else if(valor=='raiz'){
+                  $( "#datos_thresholding" ).hide();
+                  $( "#datos_contrast" ).hide();
+                  $( "#datos_ecualizacion" ).hide();
+                  $( "#datos_logaritmico_raiz" ).show();
+                  $( "#datos_raiz" ).show();
+                  $( "#datos_exponencial" ).hide();
+                  $( "#datos_raise" ).hide();
+                }else if(valor=='exponencial'){
+                  $( "#datos_thresholding" ).hide();
+                  $( "#datos_contrast" ).hide();
+                  $( "#datos_ecualizacion" ).hide();
+                  $( "#datos_logaritmico_raiz" ).hide();
+                  $( "#datos_exponencial" ).show();
+                  $( "#datos_raise" ).hide();
+                }else if(valor=='raise'){
+                  $( "#datos_thresholding" ).hide();
+                  $( "#datos_contrast" ).hide();
+                  $( "#datos_ecualizacion" ).hide();
+                  $( "#datos_logaritmico_raiz" ).hide();
+                  $( "#datos_exponencial" ).hide();
+                  $( "#datos_raise" ).show();
+                }
+     
+            });
+      });
+   </script>
+</head>
+<body>
+   
+<div id="wrapper">
+  <div id="header-wrapper">
+    <div id="header" class="container">
+      <div id="logo">
+        <h1><a href="#">COMPUTACIÓN GRÁFICA</a></h1>
+        <br>
+      </div>
+      <div id="banner"> <a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a> </div>
+    </div>
+  </div>
+  <div id="menu-wrapper"><br><br>
+   <!-- <div id="menu" class="container">
+      <ul>
+        <li class="current_page_item"><a href="#">Homepage</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>-->
+  
+  </div>
+  <div id="page" class="container">
+        <div id="content">
+          <div class="title">
+            <h2>Operadores</h2>
+         </div>
+         <form enctype="multipart/form-data" >
+          <div class="form-group row">
+              <label for="operadores" class="col-sm-2 col-form-label">Operadores</label>
+              <div class="col-sm-4">
+              <select  class="form-control" name="opcion" id="operador">
+                  <option value="0">--Seleccione--</option>
+                  <option value="thresholding">Thresholding</option>
+                  <option value="contrast">Contrast Stretching</option>
+                  <option value="ecualizacion">Ecualización Histograma</option>
+                  <option value="logaritmico">Operador Logaritmico</option>
+                  <option value="raiz">Operador Raiz</option>
+                  <option value="exponencial">Operador Exponencial</option>
+                  <option value="raise">Operador Raise to Power</option>
+              </select>
+            </div>
+            <button type="submit" id="calcular">Calcular</button>
+
+            </div>
+            <div class="form-group row" id="datos_thresholding">
+                <label for="t-1" class="col-sm-2 col-form-label">Threshold 1</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="t1" placeholder="">
+                </div>
+                <label for="t-2" class="col-sm-2 col-form-label">Threshold 2</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="t2" placeholder="">
+                </div>
+            </div>
+             <div class="form-group row" id="datos_contrast">
+                <label for="minimo" class="col-sm-2 col-form-label">Minimo</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="minimo" placeholder="">
+                </div>
+                <label for="maximo" class="col-sm-2 col-form-label">Maximo</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="maximo" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row" id="datos_ecualizacion">
+                 <label for="valor-intensidad" class="col-sm-2 col-form-label">Intensidad</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="intensidad" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row" id="datos_logaritmico_raiz">
+                <label for="valor-c" class="col-sm-2 col-form-label">C</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="valor-c" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row" id="datos_exponencial">
+                <label for="valor-b" class="col-sm-2 col-form-label">B</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="valor-b" placeholder="1.01">
+                </div>
+                 <label for="valor-c-exp" class="col-sm-2 col-form-label">C(Valores pequeños 5,10,15)</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="valor-c-exp" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row" id="datos_raise">
+                 <label for="valor-r" class="col-sm-2 col-form-label">R</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="valor-r" placeholder="1.5">
+                </div>
+                 <label for="valor-c-rai" class="col-sm-2 col-form-label">C(Val 0.01,0.5)</label>
+                <div class="col-sm-2">
+                 <input type="text" class="form-control" id="valor-c-rai" placeholder="0.01">
+                </div>
+            </div>
+
+        </form>
+
+          <div class="seleccionador">
+              <input type="file" id="file" name="file"/>
+              <span id="cargando"></span>
+          </div>
+          <div class="imagen">   
+                <img src="" id="imagen"/>
+          </div> 
+          <br><br><br><br><br>
+
+      </div>
+
+      <div id="sidebar">
+        <div class="box2">
+          <div class="title">
+            <h2>Integrantes</h2>
+          </div>
+          <ul class="style2">
+            <li>GOMEZ CONTRERAS, JUNIOR</li>
+            <li>PILCO PANCCA, LUZ MARINA</li>
+            <li>SEJJE CONDORI, ERIKA</li>
+            <li>TORRES LIMA, JOSE</li>
+          
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div id="copyright" >
+  <p>Desing by Team</p>
+</div>
+
+<script src="/static/js/app.js"></script> 
+</body>
 </html>
