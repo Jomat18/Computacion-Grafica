@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $('form').on('submit', function(event) {
+    $("#file").on('change', function (event){
         event.preventDefault();
         var propiedad = document.getElementById("file").files[0];
         
@@ -21,7 +21,7 @@ $(document).ready(function() {
             $.ajax({
                 data : form_data,
                 type : 'POST', 
-                url: '/calcular',
+                url: '/mostrar',
                 contentType: false,
                 cache: false,
                 processData: false,
@@ -35,9 +35,29 @@ $(document).ready(function() {
                 }
                 else {
                     $("#imagen").prop("src", '/static/images/' + data.name);
-                    $('#cargando').html(data);
+                    $('#cargando').html("<label style='color: blue;'>Imagen Cargada!</label>");
                 }
             });
-        }
+        }        
+    });
+
+    $('form').on('submit', function(event) {
+        event.preventDefault();     
+        $.ajax({ 
+            url: '/calcular',
+            data: { valor_a: $('#valor-a').val(),
+                    valor_b: $('#valor-b').val(),
+                    valor_c: $('#valor-c').val(),
+                    valor_d: $('#valor-d').val(),
+                    valor_r: $('#valor-r').val(),
+                    operador: $('#operador').val()
+                },
+            type: 'POST'
+        }).done(function(data) {
+            $("#imagen").prop("src", '/static/images/' + data.name);
+        }).fail(function() {
+            console.log('Failed');
+        });        
     });     
+
 });

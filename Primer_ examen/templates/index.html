@@ -26,9 +26,9 @@
         <label for="valor-d"> D</label>       
         <input type="text" id="valor-d">
         <label for="valor-r">R</label>
-        <input type="range" id="valor-r" name="valor-r" min="0" max="200"/>
-        <label for="operadores">Operadores</label>
-        <select name="opcion" id="operadores">
+        <input type="range" id="valor-r" name="valor-r" min="0" max="5" step="0.01">
+        <label for="operador">Operadores</label>
+        <select name="opcion" id="operador">
             <option value="logaritmo">Logaritm</option>
             <option value="contrast">Contrast</option>
             <option value="exponencial">Exponencial</option>
@@ -38,7 +38,7 @@
     </div>    
 
     <div class="imagen">
-      <input type="file" id="file" name="file" />
+      <input type="file" id="file" name="file"/>
       <span id="cargando"></span>
       <img src="" id="imagen"/>
     </div> 
