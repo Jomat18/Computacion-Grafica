@@ -26,15 +26,25 @@ def mostrar():
 @app.route("/calcular", methods=["POST"])        
 def calcular():
     global filename
+    porcentaje = request.form['porcentaje']
     valor_a = request.form['valor_a']
     valor_b = request.form['valor_b']
     valor_c = request.form['valor_c']
-    valor_d = request.form['valor_d']
     valor_r = request.form['valor_r']
     operador = request.form['operador']
 
-    # Aqui llamar a las funciones
-    os.system('python operadores.py static/images/'+filename +' '+ valor_c)
+    if operador=='equalizacion':
+        os.system('python hist_Equalization.py static/images/'+filename)
+    elif operador=='logaritmo':
+        os.system('python logaritmo.py static/images/'+filename +' '+ valor_c)
+    elif operador=='exponencial':    
+        os.system('python exponencial.py static/images/'+filename+' '+valor_c+' '+valor_b)
+    elif operador=='raizC':    
+        os.system('python raizC.py static/images/'+filename+' '+valor_c+' '+valor_r)
+    elif operador=='contrast':    
+        os.system('python contrast.py static/images/'+filename+' '+porcentaje)
+    else:    
+        os.system('python thresholding.py static/images/'+filename+' '+valor_a+' '+valor_b)
 
     return jsonify(name = filename)
 
