@@ -1,60 +1,59 @@
 import sys
 import cv2 as cv
 import numpy as np
-from matplotlib import pyplot as plt
-import argparse
-import math
 
+# loading image
+filename = sys.argv[1]
+cantidad = int(sys.argv[2])
 
-def mostrar_guardar(operador, imagen, filename,mi,ma):
-    # Mostrando y guardando la imagen del resultado
-    #cv.imshow('Resultado - ' + operador, imagen)
-    #cv.imwrite('resultado_' + operador + '_' + filename + ' Con ' + str(mi) + '_' + str(ma) + '.png', imagen) 
-    filename='resultado.png'
-    ruta_output="static/output/"
-    # Saving the image 
+img = cv.imread(filename, cv.IMREAD_GRAYSCALE)
 
-    cv.imwrite(ruta_output+filename, imagen) 
+if img.size == 0:
+    sys.exit("Error: the image has not been correctly loaded.")
 
+# Dimensions
+heigth = img.shape[0]
+width = img.shape[1]
 
+# Creating matrix
+Contrast = np.zeros((heigth, width, 1),np.uint8)
+
+colores = np.zeros((heigth, width, 1),np.uint8)
 
 # Contrast Stretching
-def Contrast(mi, ma, img, heigth, width, nueva_imagen):
-	a=0
-	b=255
-	c=mi
-	d=ma 
-	temp = (b - a)/(d - c)
-	for x in range(0, heigth, 1):
-	    for y in range(0, width, 1):
-	    	nueva_imagen[x][y] = (img[x][y] - c) * temp + a 
-	return nueva_imagen
-                
-if __name__ == "__main__":
 
-    # Datos
-    filename = sys.argv[1]
-    mi = float(sys.argv[2])
-    ma = float(sys.argv[3])
-    
-    # Leer imagen
-    img = cv.imread(filename , cv.IMREAD_GRAYSCALE)
+for x in range(0, heigth, 1):
+    for y in range(0, width, 1):
+    	colores[x][y] = img[x][y]
 
-    # Obteniendo dimensiones de la imagen
-    heigth = img.shape[0]
-    width = img.shape[1]   
 
-    nueva_imagen = np.zeros((heigth, width, 1), np.uint8)
+colores = np.sort(colores, axis = None)   
+lower = int((cantidad/100)*(heigth*width))
+higher = int(((100-cantidad)/100)*(heigth*width))
 
-    filename = filename.split(".")[0]    
+a = 0
+b = 255
+c = int(colores[lower])
+d = int(colores[higher-1])
 
-    # Operaciones
-    operador = 'Contrast'
+print ('c :', c, 'd:', d)
 
-    nueva_imagen = Contrast(mi, ma, img, heigth, width, nueva_imagen)
-    mostrar_guardar(operador, nueva_imagen, filename, mi, ma)
+temp = (b - a)/(d - c)
 
-    cv.waitKey(0)
-    cv.destroyAllWindows()
-    cv.waitKey(1) 
-    exit()
+for x in range(0, heigth, 1):
+    for y in range(0, width, 1):
+        valor = (img[x][y] - c) * temp + a
+
+        if valor>255:
+            valor = 255
+        if valor<0:
+            valor = 0    
+
+        Contrast[x][y] = valor
+
+
+cv.imwrite(filename, Contrast) 
+
+cv.destroyAllWindows()
+cv.waitKey(1) 
+exit()

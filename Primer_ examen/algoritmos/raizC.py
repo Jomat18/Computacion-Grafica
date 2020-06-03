@@ -1,20 +1,12 @@
+#!/usr/bin/python
+
 import sys
 import cv2 as cv
 import numpy as np
-from matplotlib import pyplot as plt
-import argparse
 import math
 
-def mostrar_guardar(operador, imagen, filename):
-    # Mostrando y guardando la imagen del resultado
-    #cv.imshow('Resultado - ' + operador, imagen)
-    #cv.imwrite('resultado_' + operador + '_' + filename + '.png', imagen) 
-    filename='resultado.png'
-    ruta_output="static/output/"
-    # Saving the image 
-
-    cv.imwrite(ruta_output+filename, imagen) 
-
+def mostrar_guardar(imagen, filename):
+    cv.imwrite(filename, imagen) 
 
 def operador_raizCuadrada(c, r, img, heigth, width, nueva_imagen):
 
@@ -48,15 +40,9 @@ if __name__ == "__main__":
 
     nueva_imagen = np.zeros((heigth, width, 1), np.uint8)
 
-    filename = filename.split(".")[0]    
-
-    # Operaciones
-    operador = 'raizToPower'
-
     nueva_imagen = operador_raizCuadrada(c, r, img, heigth, width, nueva_imagen)
-    mostrar_guardar(operador, nueva_imagen, filename)
+    mostrar_guardar(nueva_imagen, filename)
 
-    cv.waitKey(0)
     cv.destroyAllWindows()
     cv.waitKey(1) 
     exit()
