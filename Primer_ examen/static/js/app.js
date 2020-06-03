@@ -1,6 +1,86 @@
 $(document).ready(function() {
 
+    $('#valor_1').hide();
+    $('#valor_2').hide();
+    $('#valor_r').hide();
+    $('#out').hide();
+
+    $("#operador").on('change',  function (event) {
+
+        if (this.value=="raizC") {
+            $("#label_1").text("C");
+            $("#label_r").text("R");
+            $('#valor_1').show();
+            $('#out').show();
+            $('#valor_r').show();
+
+            $('#valor_2').hide();
+            $("#label_2").text("");
+        
+        }
+        else if(this.value=="exponencial") {
+            $("#label_1").text("C");
+            $('#valor_1').show();
+            $('#out').hide();
+            $('#valor_r').hide();
+            $("#label_r").hide();
+            $("#label_2").text("B");
+            $('#valor_2').show();
+        }
+        else if(this.value=="logaritmo") {
+            $("#label_1").text("C");
+            $("#label_r").text("");
+            $('#valor_1').show();
+            $('#out').hide();
+            $('#valor_r').hide();
+
+            $('#valor_2').hide();
+            $("#label_2").text("");
+        
+        }
+        else if(this.value=="equalizacion") {
+            $('#valor_1').hide();
+            $('#valor_2').hide();
+            $('#valor_r').hide();
+            $('#out').hide();
+            $("#label_1").text("");
+            $("#label_2").text("");
+            $("#label_r").text("");
+        }
+        else if(this.value=="contrast") {
+            $("#label_1").text("%");
+            $("#label_r").text("");
+            $('#valor_1').show();
+            $('#out').hide();
+            $('#valor_r').hide();
+
+            $('#valor_2').hide();
+            $("#label_2").text("");
+        }
+        else if(this.value=="thresholding") {
+            $("#label_1").text("min");
+            $("#label_2").text("max");
+            $('#valor_1').show();
+            $('#valor_2').show();
+            $('#out').hide();
+            $('#valor_r').hide();
+            $("#label_r").text("");
+        }
+        else {  //Adicion
+            $('#valor_1').hide();
+            $('#valor_2').hide();
+            $('#valor_r').hide();
+            $('#out').hide();
+            $("#label_1").text("");
+            $("#label_2").text("");
+            $("#label_r").text("");
+        }
+    });
+
     $("#file").on('change', function (event){
+
+        $("#cuadro").removeClass("temp");
+
         event.preventDefault();
         var propiedad = document.getElementById("file").files[0];
         
@@ -24,10 +104,7 @@ $(document).ready(function() {
                 url: '/mostrar',
                 contentType: false,
                 cache: false,
-                processData: false,
-                beforeSend: function(){
-                    $('#cargando').html("<label style='color: green;'>Cargando imagen...</label>");
-                }
+                processData: false
             })
             .done(function(data) {
                 if(data.error) {
@@ -35,78 +112,30 @@ $(document).ready(function() {
                 }
                 else {
                     $("#imagen").prop("src", '/static/images/' + data.name);
-                    $('#cargando').html("<label style='color: blue;'>Imagen Cargada!</label>");
                 }
             });
         }        
     });
 
     $('form').on('submit', function(event) {
-        event.preventDefault();  
+        event.preventDefault();     
         $.ajax({ 
             url: '/calcular',
-            data: {
-
-                    valor_t1: $('#t1').val(),
-                    valor_t2: $('#t2').val(),
-                    valor_minimo: $('#minimo').val(),
-                    valor_maximo: $('#maximo').val(),
-                    /*valor_a: $('#valor-a').val(),*/
-                    valor_b: $('#valor-b').val(),
-                    valor_c: $('#valor-c').val(),
-                    valor_c_exp: $('#valor-c-exp').val(),
-                    valor_c_rai: $('#valor-c-rai').val(),
-                   // valor_d: $('#valor-d').val(),
-                    valor_r: $('#valor-r').val(),
-                    valor_intensidad: $('#intensidad').val(),
-                    operador: $('#operador').val()
-                },
-            type: 'POST'
-        })
-        .done(function(data) {
-        if(data.error) {
-            console.log("Error");
-        }
-        else {
-            $("#imagen").prop("src", '/static/output/' + data.name);
-            $('#cargando').html("<label style='color: blue;'>Imagen procesada!</label>");
-        }
-    });
-        
-      /*  setTimeout(
-              function() 
-              {
-                 $('#cargando').html("<label style='color: blue;'>Imagen cambio!</label>");
-
-                 //$( "#imagen" ).removeData( "src" );
-                 //$( "#imagen" ).data( "src", "/static/images/foto_junior.png" );
-               // $("#imagen").prop("src", '/static/images/foto_junior.png');
-               // $( "#imagen" ).remove();
-                //$('.imagen').html('<img id="imagen" src="/static/output/resultado.png" />');
-                $("#imagen").prop("src", '/static/output/resultado.png' );
-
-              }, 3000);*/
-       
-       /*
-
-        $.ajax({ 
-            url: '/calcular',
-            data: { valor_a: $('#valor-a').val(),
-                    valor_b: $('#valor-b').val(),
-                    valor_c: $('#valor-c').val(),
-                    valor_d: $('#valor-d').val(),
-                    valor_r: $('#valor-r').val(),
+            data: { valor_1: $('#valor_1').val(),
+                    valor_2: $('#valor_2').val(),
+                    valor_r: $('#valor_r').val(),
                     operador: $('#operador').val()
                 },
             type: 'POST'
         }).done(function(data) {
+            var source = '/static/images/' +data.name,
+            timestamp = (new Date()).getTime(),
+            newUrl = source + '?_=' + timestamp;
+            document.getElementById("imagen").src = newUrl;
             
-            //$("#imagen").prop("src", '/static/images/' + data.name);
-            $(".imagen").html("jejejej");
-            $("#imagen").prop("src", '/static/images/molecula.jpeg');
         }).fail(function() {
             console.log('Failed');
-        });      */  
+        });        
     });     
 
 });
