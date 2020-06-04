@@ -47,6 +47,8 @@ def calcular():
         os.system('python algoritmos/contrast.py static/images/'+filename+' '+valor_1)
     elif operador=='adicion':    
         os.system('python algoritmos/adicion.py static/images/'+filename+' static/images/'+filename2)    
+    elif operador=='division':    
+        os.system('python algoritmos/division.py static/images/'+filename+' static/images/'+filename2)        
     else:    
         os.system('python algoritmos/thresholding.py static/images/'+filename+' '+valor_1+' '+valor_2)
 

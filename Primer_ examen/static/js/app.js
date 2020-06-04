@@ -66,7 +66,7 @@ $(document).ready(function() {
             $('#valor_r').hide();
             $("#label_r").text("");
         }
-        else {  //Adicion
+        else { // adicion o division
             $('#valor_1').hide();
             $('#valor_2').hide();
             $('#valor_r').hide();
@@ -75,6 +75,7 @@ $(document).ready(function() {
             $("#label_2").text("");
             $("#label_r").text("");
         }
+       
     });
 
     $("#file").on('change', function (event){
