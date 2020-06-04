@@ -46,9 +46,17 @@ def calcular():
     elif operador=='contrast':    
         os.system('python algoritmos/contrast.py static/images/'+filename+' '+valor_1)
     elif operador=='adicion':    
-        os.system('python algoritmos/adicion.py static/images/'+filename+' static/images/'+filename2)    
+        os.system('python algoritmos/adicion.py static/images/'+filename+' static/images/'+filename2)   
+    elif operador=='adicion_gris':    
+        os.system('python algoritmos/adicion_gris.py static/images/'+filename+' static/images/'+filename2)
+    elif operador=='sustraccion_letra':    
+        os.system('python algoritmos/sustraccion_letras.py static/images/'+filename+' static/images/'+filename2+' '+valor_1+' '+valor_2)  
+    elif operador=='sustraccion_movimiento':    
+        os.system('python algoritmos/sustraccion_movimiento.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)      
     elif operador=='division':    
-        os.system('python algoritmos/division.py static/images/'+filename+' static/images/'+filename2)        
+        os.system('python algoritmos/division.py static/images/'+filename+' static/images/'+filename2) 
+    elif operador=='blending':    
+        os.system('python algoritmos/blending.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)        
     else:    
         os.system('python algoritmos/thresholding.py static/images/'+filename+' '+valor_1+' '+valor_2)
 
