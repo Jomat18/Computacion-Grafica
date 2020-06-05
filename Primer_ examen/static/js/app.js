@@ -65,7 +65,8 @@ $(document).ready(function() {
             $('#out').hide();
             $('#valor_r').hide();
             $("#label_r").text("");
-        }
+        } 
+        
         else { // adicion o division
             $('#valor_1').hide();
             $('#valor_2').hide();

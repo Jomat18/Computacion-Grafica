@@ -53,6 +53,8 @@ def calcular():
         os.system('python algoritmos/sustraccion_letras.py static/images/'+filename+' static/images/'+filename2+' '+valor_1+' '+valor_2)  
     elif operador=='sustraccion_movimiento':    
         os.system('python algoritmos/sustraccion_movimiento.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)      
+    elif operador=='multiplicacionC':
+        os.system('python algoritmos/multiplicacionC.py static/images/'+filename+' static/images/'+valor_1)
     elif operador=='division':    
         os.system('python algoritmos/division.py static/images/'+filename+' static/images/'+filename2) 
     elif operador=='blending':    
