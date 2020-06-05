@@ -55,13 +55,14 @@ def calcular():
         os.system('python algoritmos/sustraccion_movimiento.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)      
     elif operador=='multiplicacionC':
         os.system('python algoritmos/multiplicacionC.py static/images/'+filename+' static/images/'+valor_1)
+    elif operador=='division_letra':    
+        os.system('python algoritmos/division_letras.py static/images/'+filename+' static/images/'+filename2) 
     elif operador=='division':    
         os.system('python algoritmos/division.py static/images/'+filename+' static/images/'+filename2) 
     elif operador=='blending':    
         os.system('python algoritmos/blending.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)        
     else:    
         os.system('python algoritmos/thresholding.py static/images/'+filename+' '+valor_1+' '+valor_2)
-
     return jsonify(name = filename)
 
 
