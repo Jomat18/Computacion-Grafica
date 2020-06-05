@@ -7,7 +7,7 @@ import numpy as np
 
 #multiplicación por una constante
 
-def MultiplcacionC(img1, c):
+def MultiplicacionC(img1, c):
 
     heigth = img1.shape[0]
     width = img1.shape[1]
@@ -30,7 +30,7 @@ if __name__ == "__main__":
     # Leer imagenes
     img1 = cv.imread(filename1)
 
-    nueva_imagen = MultiplcacionC(img1,c)
+    nueva_imagen = MultiplicacionC(img1,c)
 
     # Guardando la imagen del resultado
     cv.imwrite('resultado_1_'+str(c)+'.jpg', nueva_imagen) 
