@@ -65,8 +65,32 @@ $(document).ready(function() {
             $('#out').hide();
             $('#valor_r').hide();
             $("#label_r").text("");
+        }else if(this.value=="sustraccion_letra") {
+            $('#valor_1').show();
+            $('#valor_2').show();
+            $('#valor_r').hide();
+            $('#out').hide();
+            $("#label_1").text("C");
+            $("#label_2").text("threshold");
+            $("#label_r").text("");
+        }else if(this.value=="sustraccion_movimiento") {
+            $('#valor_1').show();
+            $('#valor_2').hide();
+            $('#valor_r').hide();
+            $('#out').hide();
+            $("#label_1").text("C");
+            $("#label_2").text("");
+            $("#label_r").text("");
+        }else if(this.value=="blending") {
+            $('#valor_1').show();
+            $('#valor_2').hide();
+            $('#valor_r').hide();
+            $('#out').hide();
+            $("#label_1").text("X");
+            $("#label_2").text("");
+            $("#label_r").text("");
         }
-        else { // adicion o division
+        else { // 6-2-adicion color ,6-1 adicion gris, 7- division
             $('#valor_1').hide();
             $('#valor_2').hide();
             $('#valor_r').hide();
@@ -118,7 +142,7 @@ $(document).ready(function() {
         }        
     });
 
-    $('form').on('submit', function(event) {
+    $('form').on('submit', function(event) { 
         event.preventDefault();     
         $.ajax({ 
             url: '/calcular',
