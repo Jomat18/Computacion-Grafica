@@ -98,7 +98,7 @@ input[type=text]:focus{
 
 #operador {
     margin-right: 20px;
-    width: 200px;
+    width: 250px;
     height: calc(2.25rem + 2px);
     text-decoration: none;
     display: inline-block;
@@ -119,6 +119,10 @@ input[type=text]:focus{
     box-shadow: none;
   }
 
+#operador:hover {
+  border: 4px solid #ced4da;
+}
+
  input:focus {
     outline: none;
     box-shadow: none;
@@ -136,7 +140,8 @@ input[type=text]:focus{
     border: none;
     border-radius: 7px;
     font-size: 15px;
-  }
+    cursor: pointer;
+ }
 
   #file:focus {
     outline: none;
@@ -217,6 +222,11 @@ button:focus {
     outline: none;
     box-shadow: none;
   }
+
+button:hover {
+    background-color: #00AABB;
+}
+
 
 .temp {
     margin-bottom: 300px;
