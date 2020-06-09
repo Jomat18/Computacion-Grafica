@@ -19,6 +19,7 @@ def MultiplicacionC(img1, c):
         for j in range(width):
             for k in range(3):
                 aux = img1[i][j][k] * c
+		#Para mantener dentro del rango
                 if (aux > 255): 
                     nueva_imagen[i][j][k] = 255
                 else:
