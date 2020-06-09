@@ -18,14 +18,18 @@ def MultiplicacionC(img1, c):
     for i in range(heigth):
         for j in range(width):
             for k in range(3):
-                nueva_imagen[i][j][k] = img1[i][j][k] * c
+                aux = img1[i][j][k] * c
+                if (aux > 255): 
+                    nueva_imagen[i][j][k] = 255
+                else:
+                    nueva_imagen[i][j][k] = aux
 
     return nueva_imagen
 
 if __name__ == "__main__":
 
     filename1 = sys.argv[1]
-    c = int(sys.argv[2])
+    c = float(sys.argv[2])
 
     # Leer imagenes
     img1 = cv.imread(filename1)
