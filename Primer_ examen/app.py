@@ -45,6 +45,7 @@ def calcular():
         os.system('python algoritmos/raizC.py static/images/'+filename+' '+valor_1+' '+valor_r)
     elif operador=='contrast':    
         os.system('python algoritmos/contrast.py static/images/'+filename+' '+valor_1)
+    #practica 6
     elif operador=='adicion':    
         os.system('python algoritmos/adicion.py static/images/'+filename+' static/images/'+filename2)   
     elif operador=='adicion_gris':    
@@ -52,7 +53,8 @@ def calcular():
     elif operador=='sustraccion_letra':    
         os.system('python algoritmos/sustraccion_letras.py static/images/'+filename+' static/images/'+filename2+' '+valor_1+' '+valor_2)  
     elif operador=='sustraccion_movimiento':    
-        os.system('python algoritmos/sustraccion_movimiento.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)      
+        os.system('python algoritmos/sustraccion_movimiento.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)   
+    #practica 7   
     elif operador=='multiplicacionC':
         os.system('python algoritmos/multiplicacionC.py static/images/'+filename+' static/images/'+valor_1)
     elif operador=='division_letra':    
@@ -60,9 +62,12 @@ def calcular():
     elif operador=='division':    
         os.system('python algoritmos/division.py static/images/'+filename+' static/images/'+filename2) 
     elif operador=='blending':    
-        os.system('python algoritmos/blending.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)        
+        os.system('python algoritmos/blending.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)     
+    #practica 8   
     elif operador=='operador_and':    
-        os.system('python algoritmos/operador_and.py static/images/'+filename+' static/images/'+filename2)                    
+        os.system('python algoritmos/operador_and.py static/images/'+filename+' static/images/'+filename2)
+    elif operador=='operador_or':    
+        os.system('python algoritmos/operador_or.py static/images/'+filename+' static/images/'+filename2)                    
     else:    
         os.system('python algoritmos/thresholding.py static/images/'+filename+' '+valor_1+' '+valor_2)
     return jsonify(name = filename)
