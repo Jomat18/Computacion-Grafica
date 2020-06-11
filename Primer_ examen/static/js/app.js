@@ -67,7 +67,7 @@ $(document).ready(function() {
             $("#label_r").text("");
         } 
         
-        else { // adicion o division
+        else { // adicion  division operador_and (todos los que no reciben parametros, solo imagenes)
             $('#valor_1').hide();
             $('#valor_2').hide();
             $('#valor_r').hide();

@@ -61,6 +61,8 @@ def calcular():
         os.system('python algoritmos/division.py static/images/'+filename+' static/images/'+filename2) 
     elif operador=='blending':    
         os.system('python algoritmos/blending.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)        
+    elif operador=='operador_and':    
+        os.system('python algoritmos/operador_and.py static/images/'+filename+' static/images/'+filename2)                    
     else:    
         os.system('python algoritmos/thresholding.py static/images/'+filename+' '+valor_1+' '+valor_2)
     return jsonify(name = filename)
