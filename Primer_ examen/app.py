@@ -67,7 +67,9 @@ def calcular():
     elif operador=='operador_and':    
         os.system('python algoritmos/operador_and.py static/images/'+filename+' static/images/'+filename2)
     elif operador=='operador_or':    
-        os.system('python algoritmos/operador_or.py static/images/'+filename+' static/images/'+filename2)                    
+        os.system('python algoritmos/operador_or.py static/images/'+filename+' static/images/'+filename2)
+    elif operador=='operador_xor':    
+        os.system('python algoritmos/operador_xor.py static/images/'+filename+' static/images/'+filename2)                  
     else:    
         os.system('python algoritmos/thresholding.py static/images/'+filename+' '+valor_1+' '+valor_2)
     return jsonify(name = filename)
