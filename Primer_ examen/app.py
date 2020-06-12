@@ -51,12 +51,12 @@ def calcular():
     elif operador=='adicion_gris':    
         os.system('python algoritmos/adicion_gris.py static/images/'+filename+' static/images/'+filename2)
     elif operador=='sustraccion_letra':    
-        os.system('python algoritmos/sustraccion_letras.py static/images/'+filename+' static/images/'+filename2+' '+valor_1+' '+valor_2)  
+        os.system('python algoritmos/sustraccion_letras.py static/images/'+filename+' static/images/'+filename2)  
     elif operador=='sustraccion_movimiento':    
         os.system('python algoritmos/sustraccion_movimiento.py static/images/'+filename+' static/images/'+filename2+' '+valor_1)   
     #practica 7   
     elif operador=='multiplicacionC':
-        os.system('python algoritmos/multiplicacionC.py static/images/'+filename+' static/images/'+valor_1)
+        os.system('python algoritmos/multiplicacionC.py static/images/'+filename+' '+valor_1)
     elif operador=='division_letra':    
         os.system('python algoritmos/division_letras.py static/images/'+filename+' static/images/'+filename2) 
     elif operador=='division':    

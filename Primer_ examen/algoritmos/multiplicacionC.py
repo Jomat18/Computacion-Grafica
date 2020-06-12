@@ -33,7 +33,7 @@ if __name__ == "__main__":
     nueva_imagen = MultiplicacionC(img1,c)
 
     # Guardando la imagen del resultado
-    cv.imwrite('resultado_1_'+str(c)+'.jpg', nueva_imagen) 
+    cv.imwrite(filename1, nueva_imagen) 
     
     cv.destroyAllWindows()
     cv.waitKey(1) 
