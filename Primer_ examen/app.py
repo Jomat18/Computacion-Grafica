@@ -72,6 +72,12 @@ def calcular():
         os.system('python algoritmos/operador_xor.py static/images/'+filename+' static/images/'+filename2)                  
     else:    
         os.system('python algoritmos/thresholding.py static/images/'+filename+' '+valor_1+' '+valor_2)
+
+    # agregar esto    
+    filename, file_extension = os.path.splitext(filename)
+    filename = filename + '_r'+file_extension
+    ########################
+
     return jsonify(name = filename)
 
 
