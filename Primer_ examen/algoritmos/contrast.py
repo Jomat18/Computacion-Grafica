@@ -1,4 +1,5 @@
 import sys
+import os  # Agregar esto
 import cv2 as cv
 import numpy as np
 
@@ -51,8 +52,12 @@ for x in range(0, heigth, 1):
 
         Contrast[x][y] = valor
 
+#Agregar esto
+filename, file_extension = os.path.splitext(filename)
 
-cv.imwrite(filename, Contrast) 
+cv.imwrite(filename+'_r'+file_extension, Contrast) 
+
+###############
 
 cv.destroyAllWindows()
 cv.waitKey(1) 
