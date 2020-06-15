@@ -1,5 +1,18 @@
-$(document).ready(function() {
+var i = 1
 
+$(document).on('click', '.remove-img', function () {
+	$(this).parent().remove(); 
+	i = i - 1
+
+	if (i == 1) {
+    	$("#cuadro").addClass("temp");
+    }
+
+    document.getElementById("file").value = null;
+
+});
+
+$(document).ready(function() {
     $('#valor_1').hide();
     $('#valor_2').hide();
     $('#valor_r').hide();
@@ -96,7 +109,7 @@ $(document).ready(function() {
             $("#label_2").text("");
             $("#label_r").text("");
         }
-    });
+    });    
 
     $("#file").on('change', function (event){
 
@@ -132,14 +145,40 @@ $(document).ready(function() {
                     console.log("Error");
                 }
                 else {
-                    $("#imagen").prop("src", '/static/images/' + data.name);
+
+                	var div = $('<div> </div>', { 
+					});
+
+					div.addClass("imagen");
+
+					div.appendTo($('#cuadro'));                	
+
+					var h2 = $('<h2> '+ data.name +'</h2>', { 
+                	  id: 'imagen'+i,
+					});
+
+                	var img = $('<img >', { 
+                	  id: 'imagen'+i,
+					});
+
+					div.append(h2)
+					img.addClass("remove-img")
+					div.append(img)
+
+                    $('#imagen'+i).prop("src", '/static/images/' + data.name);
+
+                    i = i+ 1
                 }
             });
         }        
     });
 
     $('form').on('submit', function(event) {
+
         event.preventDefault();     
+
+        document.getElementById("file").value = null;
+
         $.ajax({ 
             url: '/calcular',
             data: { valor_1: $('#valor_1').val(),
@@ -149,10 +188,33 @@ $(document).ready(function() {
                 },
             type: 'POST'
         }).done(function(data) {
+
+
+        	var div = $('<div> </div>', { 
+			});
+
+			div.addClass("imagen");
+
+			div.appendTo($('#cuadro'));                	
+
+        	var h2 = $('<h2> '+ $('#operador').val() +' </h2>', { 
+            	  id: 'imagen'+i
+				});
+
+        	var img = $('<img >', { 
+            	  id: 'imagen'+i
+				});
+
+        	div.append(h2)
+        	img.addClass("remove-img")
+			div.append(img)
+
             var source = '/static/images/' +data.name,
             timestamp = (new Date()).getTime(),
             newUrl = source + '?_=' + timestamp;
-            document.getElementById("imagen").src = newUrl;
+            document.getElementById("imagen"+i).src = newUrl;
+
+            i = i+ 1
             
         }).fail(function() {
             console.log('Failed');
