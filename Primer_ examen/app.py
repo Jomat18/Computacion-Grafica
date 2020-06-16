@@ -73,10 +73,9 @@ def calcular():
     else:    
         os.system('python algoritmos/thresholding.py static/images/'+filename+' '+valor_1+' '+valor_2)
 
-    # agregar esto    
+    
     filename, file_extension = os.path.splitext(filename)
     filename = filename + '_r'+file_extension
-    ########################
 
     return jsonify(name = filename)
 
