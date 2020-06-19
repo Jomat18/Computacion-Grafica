@@ -10,6 +10,16 @@ $(document).on('click', '.remove-img', function () {
 
     document.getElementById("file").value = null;
 
+    $.ajax({ 
+            url: '/remove',
+            data: 'remove',
+            type: 'POST'
+        }).done(function(data) {
+            //console.log(data.state)
+        }).fail(function() {
+            console.log('Failed');
+        });        
+
 });
 
 $(document).ready(function() {
@@ -205,8 +215,8 @@ $(document).ready(function() {
             	  id: 'imagen'+i
 				});
 
-        	div.append(h2)
-        	img.addClass("remove-img")
+			div.append(h2)
+			img.addClass("remove-img")
 			div.append(img)
 
             var source = '/static/images/' +data.name,

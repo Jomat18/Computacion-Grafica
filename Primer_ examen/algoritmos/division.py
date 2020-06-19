@@ -2,6 +2,7 @@
 
 import sys
 import cv2 as cv
+import os  # Agregar esto
 import numpy as np
 
 def division(img1, img2):
@@ -36,7 +37,10 @@ if __name__ == "__main__":
     nueva_imagen = division(img1, img2)
 
     # Guardando la imagen del resultado
-    cv.imwrite(filename1, nueva_imagen) 
+
+    filename, file_extension = os.path.splitext(filename1)
+
+    cv.imwrite(filename+'_r'+file_extension, nueva_imagen) 
     
     cv.destroyAllWindows()
     cv.waitKey(1) 
