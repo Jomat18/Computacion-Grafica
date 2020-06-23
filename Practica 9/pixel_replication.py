@@ -19,6 +19,7 @@ def pixel_replication(img):
             scaling[row*2+1][column*2+1] = img[row][column]
             
 
+    cv2.imwrite('pixel_replication.jpg', scaling)        
     plt.subplot(2, 2, 1) 
     plt.title('Original') 
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -30,7 +31,6 @@ def pixel_replication(img):
     scaling = np.array(scaling)
     plt.imshow(scaling)
     plt.show()        
-    cv2.imwrite('pixel_replication.jpg', scaling)
 
 
 if __name__ == "__main__":
