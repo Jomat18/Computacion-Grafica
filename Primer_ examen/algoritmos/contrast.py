@@ -37,7 +37,7 @@ b = 255
 c = int(colores[lower])
 d = int(colores[higher-1])
 
-print ('c :', c, 'd:', d)
+#print ('c :', c, 'd:', d)
 
 temp = (b - a)/(d - c)
 

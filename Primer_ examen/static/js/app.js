@@ -1,5 +1,8 @@
 var i = 1
 
+var puntos = [];
+
+/*
 $(document).on('click', '.remove-img', function () {
 	$(this).parent().remove(); 
 	i = i - 1
@@ -20,6 +23,14 @@ $(document).on('click', '.remove-img', function () {
             console.log('Failed');
         });        
 
+});
+*/
+
+$(document).on('click', 'img', function (event) {
+        var x = event.pageX - this.offsetLeft;
+        var y = event.pageY - this.offsetTop;
+
+        puntos.push([x,y]);
 });
 
 $(document).ready(function() {
@@ -185,6 +196,8 @@ $(document).ready(function() {
 
     $('form').on('submit', function(event) {
 
+        console.log(puntos)            
+
         event.preventDefault();     
 
         document.getElementById("file").value = null;
@@ -194,7 +207,15 @@ $(document).ready(function() {
             data: { valor_1: $('#valor_1').val(),
                     valor_2: $('#valor_2').val(),
                     valor_r: $('#valor_r').val(),
-                    operador: $('#operador').val()
+                    operador: $('#operador').val(),
+                    punto_1x: puntos[0][0], 
+                    punto_1y: puntos[0][1],
+                    punto_2x: puntos[1][0],
+                    punto_2y: puntos[1][1],
+                    punto_3x: puntos[2][0],
+                    punto_3y: puntos[2][1],
+                    punto_4x: puntos[3][0],
+                    punto_4y: puntos[3][1]
                 },
             type: 'POST'
         }).done(function(data) {
@@ -228,7 +249,10 @@ $(document).ready(function() {
             
         }).fail(function() {
             console.log('Failed');
-        });        
+        });     
+
+        //puntos.length = 0
+   
     });     
 
 });

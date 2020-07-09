@@ -40,6 +40,19 @@ def calcular():
     valor_2 = request.form['valor_2']
     valor_r = request.form['valor_r']
     operador = request.form['operador']
+    punto_1x = request.form['punto_1x'] 
+    punto_1y = request.form['punto_1y'] 
+    punto_2x = request.form['punto_2x'] 
+    punto_2y = request.form['punto_2y'] 
+    punto_3x = request.form['punto_3x'] 
+    punto_3y = request.form['punto_3y'] 
+    punto_4x = request.form['punto_4x'] 
+    punto_4y = request.form['punto_4y'] 
+
+    print(punto_1x, punto_1y)
+    print(punto_2x, punto_2y)
+    print(punto_3x, punto_3y)
+    print(punto_4x, punto_4y)
 
     size = len(stack)
 
