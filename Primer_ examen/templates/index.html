@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Computacion Grafica</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.1.0.js"></script>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
    <body>
@@ -22,7 +23,8 @@
       </div>
       <label for="operador"></label>
       <select name="opcion" id="operador">
-        <option value="" hidden>seleccionar</option>
+          <option value="" hidden>seleccionar</option>
+          <option value="scanner">CamScanner</option>
           <option value="raizC">RaizC</option>
           <option value="exponencial">Exponencial</option>
           <option value="logaritmo">Logaritmo</option>
@@ -50,6 +52,17 @@
           <label for="valor-r" id="label_r"></label>
           <input class="barra" type="range" id="valor_r" name="valor" min="1" max="2" step="0.1" oninput="this.form.amountInput.value=this.value" />
           <input id=out type="number" name="amountInput" min="1" max="2" value="1.5" step="0.1" oninput="this.form.valor.value=this.value" />
+
+          <select name="opcion" id="operador2">
+            <option value="" hidden>seleccionar</option>
+            <option value="detectar">Detectar Documento</option>
+            <option value="bordes">Detectar Borde</option>
+            <option value="puntos">Seleccionar esquinas</option>
+            <option value="thresholding">Thresholding</option>
+            <option value="blanco_negro">Blanco y Negro</option>
+            <option value="colores">A colores</option>
+          </select>
+
           <button type="submit">Calcular</button>  
      </form>
 
