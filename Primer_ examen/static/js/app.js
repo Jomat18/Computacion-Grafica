@@ -2,34 +2,48 @@ var i = 1
 
 var puntos = [];
 
-/*
 $(document).on('click', '.remove-img', function () {
-	$(this).parent().remove(); 
-	i = i - 1
 
-	if (i == 1) {
-    	$("#cuadro").addClass("temp");
-    }
+    if(document.getElementById("operador2").value != "puntos") {
 
-    document.getElementById("file").value = null;
+    	$(this).parent().remove(); 
+    	i = i - 1
 
-    $.ajax({ 
-            url: '/remove',
-            data: 'remove',
-            type: 'POST'
-        }).done(function(data) {
-            //console.log(data.state)
-        }).fail(function() {
-            console.log('Failed');
-        });        
+    	if (i == 1) {
+        	$("#cuadro").addClass("temp");
+        }
+
+        document.getElementById("file").value = null;
+
+        $.ajax({ 
+                url: '/remove',
+                data: 'remove',
+                type: 'POST'
+            }).done(function(data) {
+                //console.log(data.state)
+            }).fail(function() {
+                console.log('Failed');
+            });        
+    }    
 
 });
-*/
 
-$(document).on('click', 'img', function (event) {
+
+$(document).on('click', '.imagen', function (event) {
         var x = event.pageX - this.offsetLeft;
         var y = event.pageY - this.offsetTop;
 
+        var div = $("<div />", {
+          "class": "circle",
+          css: {
+            top: y,
+            left: x,
+            width: 20,
+            height: 20,
+          },
+        });
+
+        div.appendTo($('.imagen'));
         puntos.push([x,y]);
 });
 
@@ -37,6 +51,7 @@ $(document).ready(function() {
     $('#valor_1').hide();
     $('#valor_2').hide();
     $('#valor_r').hide();
+    $('#operador2').hide();
     $('#out').hide();
 
     $("#operador").on('change',  function (event) {
@@ -121,6 +136,16 @@ $(document).ready(function() {
             $("#label_2").text("");
             $("#label_r").text("");
         }     
+        else if(this.value=="scanner") {
+            $('#valor_1').hide();
+            $('#valor_2').hide();
+            $('#valor_r').hide();
+            $('#out').hide();
+            $("#label_1").text("");
+            $("#label_2").text("");
+            $("#label_r").text("");
+            $("#operador2").show();            
+        }
         else { // adicion,adicion_gris  division, operador_and,operador_or, division_letra(todos los que no reciben parametros, solo imagenes)
             $('#valor_1').hide();
             $('#valor_2').hide();
@@ -196,9 +221,16 @@ $(document).ready(function() {
 
     $('form').on('submit', function(event) {
 
-        console.log(puntos)            
+        //console.log(puntos)            
 
         event.preventDefault();     
+
+        if (puntos.length==0) {
+        	
+        	for (var i = 0; i < 8; i++) {
+				puntos.push([0,0]);
+			}
+        }
 
         document.getElementById("file").value = null;
 
@@ -208,6 +240,7 @@ $(document).ready(function() {
                     valor_2: $('#valor_2').val(),
                     valor_r: $('#valor_r').val(),
                     operador: $('#operador').val(),
+                    operador2: $('#operador2').val(),
                     punto_1x: puntos[0][0], 
                     punto_1y: puntos[0][1],
                     punto_2x: puntos[1][0],
@@ -250,9 +283,12 @@ $(document).ready(function() {
         }).fail(function() {
             console.log('Failed');
         });     
-
-        //puntos.length = 0
    
+        //console.log(puntos.length)
+        if (puntos.length){
+            puntos.length = 0
+        }    
+            
     });     
 
 });
