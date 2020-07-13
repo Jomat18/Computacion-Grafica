@@ -1,4 +1,5 @@
 import sys
+import os 
 import cv2 as cv
 import numpy as np
 import math
@@ -55,7 +56,12 @@ if __name__ == "__main__":
     escribiendo_resultado(nueva_imagen, img, heigth, width, s_n)
 
     # Guardando la imagen
-    cv.imwrite(filename, nueva_imagen) 
+   # cv.imwrite(filename, nueva_imagen) 
+   #Agregar esto
+    filename, file_extension = os.path.splitext(filename)
+
+    cv.imwrite(filename+'_r'+file_extension, nueva_imagen) 
+
     
     cv.destroyAllWindows()
     cv.waitKey(1) 

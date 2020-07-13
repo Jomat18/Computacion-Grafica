@@ -1,4 +1,5 @@
 import sys
+import os
 import cv2 as cv
 import numpy as np
 
@@ -28,7 +29,11 @@ for x in range(0, heigth, 1):
 
   
 # Saving the image 
-cv.imwrite(filename, harvests) 
+#Agregar esto
+filename, file_extension = os.path.splitext(filename)
+
+cv.imwrite(filename+'_r'+file_extension, harvests) 
+#cv.imwrite(filename, harvests) 
 
 cv.destroyAllWindows()
 cv.waitKey(1) 
