@@ -55,10 +55,11 @@ def calcular():
 
     # operaciones en camscanner
     if operador=='scanner':
-        if operador2=='thresholding':    
-            os.system('python algoritmos/... static/images/'+stack[size-1])
-            print ("thresholding")
-        elif operador2=='detectar':    
+        if operador2=='detectar_bordes_cortar':    
+            os.system('python algoritmos/deteccion_borde_cortar.py static/images/'+stack[size-1])
+            print ("detectar borde cortar")
+        elif operador2=='equalizacion_cs':    
+            os.system('python algoritmos/hist_Equalization.py static/images/'+stack[size-1])
             print ("detectar documento")
         elif operador2=='bordes':    
             print ("bordes")
