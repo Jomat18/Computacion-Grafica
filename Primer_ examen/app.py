@@ -55,7 +55,13 @@ def calcular():
 
     # operaciones en camscanner
     if operador=='scanner':
-        if operador2=='detectar_bordes_cortar':    
+        if operador2=='procesar':    
+            os.system('python algoritmos/procesar.py static/images/'+stack[size-1])
+        elif operador2=='grises':    
+            print ("grises")
+        elif operador2=='bordes':  
+            os.system('python algoritmos/bordes.py static/images/'+stack[size-1])
+        elif operador2=='detectar_bordes_cortar':    
             os.system('python algoritmos/deteccion_borde_cortar.py static/images/'+stack[size-1])
             print ("detectar borde cortar")
         elif operador2=='equalizacion_cs':    
@@ -64,7 +70,7 @@ def calcular():
         elif operador2=='bordes':    
             print ("bordes")
         elif operador2=='blanco_negro':    
-            print ("blanco y negro")
+            os.system('python algoritmos/adaptative_thresholding.py static/images/'+stack[size-1])
         elif operador2=='colores':    
             print ("colores RGB")            
         else:   #puntos
@@ -72,8 +78,7 @@ def calcular():
             #print(punto_1x, punto_1y)
             #print(punto_2x, punto_2y)
             #print(punto_3x, punto_3y)
-            #print(punto_4x, punto_4y)        
-
+            #print(punto_4x, punto_4y)  
 
     else:    # operaciones anteriores
 

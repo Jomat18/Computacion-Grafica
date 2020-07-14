@@ -30,6 +30,8 @@ $(document).on('click', '.remove-img', function () {
 
 
 $(document).on('click', '.imagen', function (event) {
+
+	if(document.getElementById("operador2").value == "puntos") {
         var x = event.pageX - this.offsetLeft;
         var y = event.pageY - this.offsetTop;
 
@@ -45,6 +47,7 @@ $(document).on('click', '.imagen', function (event) {
 
         div.appendTo($('.imagen'));
         puntos.push([x,y]);
+    }    
 });
 
 $(document).ready(function() {
@@ -227,7 +230,7 @@ $(document).ready(function() {
 
         if (puntos.length==0) {
         	
-        	for (var i = 0; i < 8; i++) {
+        	for (var p = 0; p < 8; p++) {
 				puntos.push([0,0]);
 			}
         }
@@ -261,9 +264,19 @@ $(document).ready(function() {
 
 			div.appendTo($('#cuadro'));                	
 
-        	var h2 = $('<h2> '+ $('#operador').val() +' </h2>', { 
-            	  id: 'imagen'+i
-				});
+            var h2;
+
+            if ($('#operador').val()=="scanner") {
+                h2 = $('<h2> '+ $('#operador2').val() +' </h2>', { 
+                  id: 'imagen'+i
+                });
+            }
+            
+            else {
+                h2 = $('<h2> '+ $('#operador').val() +' </h2>', { 
+                  id: 'imagen'+i
+                });
+            }
 
         	var img = $('<img >', { 
             	  id: 'imagen'+i
@@ -277,7 +290,7 @@ $(document).ready(function() {
             timestamp = (new Date()).getTime(),
             newUrl = source + '?_=' + timestamp;
             document.getElementById("imagen"+i).src = newUrl;
-
+            
             i = i+ 1
             
         }).fail(function() {

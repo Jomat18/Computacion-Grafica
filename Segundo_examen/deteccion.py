@@ -1,5 +1,6 @@
 #!/usr/bin/python
-
+import sys
+import os 
 import cv2
 import numpy as np
 
@@ -110,7 +111,10 @@ def transform(pos):
     return int(w),int(h),rect
 
  
-img=cv2.imread('1.png')
+# loading image
+filename = sys.argv[1]
+
+img=cv2.imread(filename)
 r=500.0 / img.shape[1]
 dim=(500, int(img.shape[0] * r))
 img=cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
@@ -118,7 +122,7 @@ img=cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
 cv2.imshow('imagen',img)
 gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 #gray=cv2.GaussianBlur(gray,(5,5),0)  #(5,5) is the kernel size and 0 is sigma that determines the amount of blur
-gray=cv2.GaussianBlur(gray,(11,11),0)
+gray=cv2.GaussianBlur(gray,(11,11),0) #tamaño del nucleo, sigma para x e y
 #edge=cv2.Canny(gray,100,200)
 edge=cv2.Canny(gray, 75, 200)  #MinThreshold and MaxThreshold
 
@@ -126,6 +130,8 @@ contours,_=cv2.findContours(edge.copy(),1,1)
 img_ = img.copy()
 cv2.drawContours(img_,contours,-1,[0,255,0],2)
 cv2.imshow('contornos',img_)
+
+
 n=len(contours)
 max_area=0
 pos=0
@@ -147,8 +153,13 @@ dst=cv2.warpPerspective(img,M,(w,h))
 image=cv2.cvtColor(dst,cv2.COLOR_BGR2GRAY)
 #image=cv2.adaptiveThreshold(image,255,1,0,11,2)
 image = cv2.resize(image,(w,h),interpolation = cv2.INTER_AREA)
-image = contrast(image)
-image = thresholding_adaptativo(image, 10, 2)
-cv2.imshow('salida',image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+#image = contrast(image)
+#image = thresholding_adaptativo(image, 10, 2)
+
+
+filename, file_extension = os.path.splitext(filename)
+cv.imwrite(filename+'_r'+file_extension, image) 
+
+cv.destroyAllWindows()
+cv.waitKey(1) 
+exit()
