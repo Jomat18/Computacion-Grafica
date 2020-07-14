@@ -40,8 +40,8 @@ $(document).on('click', '.imagen', function (event) {
           css: {
             top: y,
             left: x,
-            width: 10,
-            height: 10,
+            width: 20,
+            height: 20,
           },
         });
 

@@ -61,14 +61,8 @@ def calcular():
             print ("grises")
         elif operador2=='bordes':  
             os.system('python algoritmos/bordes.py static/images/'+stack[size-1])
-        elif operador2=='detectar_bordes_cortar':    
-            os.system('python algoritmos/deteccion_borde_cortar.py static/images/'+stack[size-1])
-            print ("detectar borde cortar")
         elif operador2=='equalizacion_cs':    
             os.system('python algoritmos/hist_Equalization.py static/images/'+stack[size-1])
-            print ("detectar documento")
-        elif operador2=='bordes':    
-            print ("bordes")
         elif operador2=='blanco_negro':    
             os.system('python algoritmos/adaptative_thresholding.py static/images/'+stack[size-1])
         elif operador2=='colores':    

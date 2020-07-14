@@ -60,15 +60,15 @@ def convolve(X, F):
     #iterate over all the pixel of image X
     for i in np.arange(H, X_height-H):
         for j in np.arange(W, X_width-W):
-            sum = 0
+            suma = 0
             #iterate over the filter
             for k in np.arange(-H, H+1):
                 for l in np.arange(-W, W+1):
                     #get the corresponding value from image and filter
                     a = X[i+k, j+l]
                     w = F[H+k, W+l]
-                    sum += (w * a)
-            out[i,j] = sum
+                    suma += (w * a)
+            out[i,j] = suma
     #return convolution  
     return out
     
@@ -82,10 +82,10 @@ img = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
  
 # Su funcion
 #normalizing the vectors
-Gx = np.array([[0, 1, 0],[1, -4, 1],[0, 1, 0]])
-Gy = np.array([[0, 1, 0],[1, -4, 1],[0, 1, 0]])
-sob_x = convolve(img, Gx) 
-sob_y = convolve(img, Gy) 
+#Gx = np.array([[0, 1, 0],[1, -4, 1],[0, 1, 0]])
+#Gy = np.array([[0, 1, 0],[1, -4, 1],[0, 1, 0]])
+#sob_x = convolve(img, Gx) 
+#sob_y = convolve(img, Gy) 
 
 gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=cv2.GaussianBlur(gray,(11,11),0)
