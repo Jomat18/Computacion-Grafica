@@ -38,39 +38,6 @@ def transform(pos):
     w=max(w1,w2)
    
     return int(w),int(h),rect
-
-
-#define kernal convolution function
-# with image X and filter F
-def convolve(X, F):
-
-    # height and width of the image
-    X_height = X.shape[0]
-    X_width = X.shape[1]
-    
-    # height and width of the filter
-    F_height = F.shape[0]
-    F_width = F.shape[1]
-    
-    H = (F_height - 1) // 2
-    W = (F_width - 1) // 2
-    
-    #output numpy matrix with height and width
-    out = np.zeros((X_height, X_width))
-    #iterate over all the pixel of image X
-    for i in np.arange(H, X_height-H):
-        for j in np.arange(W, X_width-W):
-            suma = 0
-            #iterate over the filter
-            for k in np.arange(-H, H+1):
-                for l in np.arange(-W, W+1):
-                    #get the corresponding value from image and filter
-                    a = X[i+k, j+l]
-                    w = F[H+k, W+l]
-                    suma += (w * a)
-            out[i,j] = suma
-    #return convolution  
-    return out
     
 
 filename = sys.argv[1]
@@ -79,13 +46,6 @@ img=cv2.imread(filename)
 r = 500.0 / img.shape[1]
 dim = (500, int(img.shape[0] * r))
 img = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
- 
-# Su funcion
-#normalizing the vectors
-#Gx = np.array([[0, 1, 0],[1, -4, 1],[0, 1, 0]])
-#Gy = np.array([[0, 1, 0],[1, -4, 1],[0, 1, 0]])
-#sob_x = convolve(img, Gx) 
-#sob_y = convolve(img, Gy) 
 
 gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 gray=cv2.GaussianBlur(gray,(11,11),0)
