@@ -167,19 +167,21 @@ gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 #gray = grises(img)   
 
 # Detectando bordes
+# Gaussian Blur Opencv
 #gray=cv2.GaussianBlur(gray,(5,5),0)  
-gray=cv2.GaussianBlur(gray,(11,11),0) # kernelde 11x11 y sigma igual a 0, sigma determina la cantidad de blur
-#gray=gaussian_blur(gray,(11, 11), 2) #2.6  Smoothing 
+#gray=cv2.GaussianBlur(gray,(11,11),0) # kernelde 11x11 y sigma igual a 0, sigma determina la cantidad de blur
+
+# Gaussian Blur
+gray=gaussian_blur(gray,(11, 11), 2) #2.6  Smoothing 
 
 # Canny
-'''
 sob_x = convolve(gray, Sx) 
 sob_y = convolve(gray, Sy) 
 out = magnitude(sob_x, sob_y)
 edge = thresholding(out, 120, 200)  #MinThreshold and MaxThreshold
-'''
 
-edge=cv2.Canny(gray, 75, 200)  #75 Threshold min y 200 Threshold max
+# Canny Opencv
+#edge=cv2.Canny(gray, 75, 200)  #75 Threshold min y 200 Threshold max
 #edge=cv2.Canny(gray,100,200) #MinThreshold and MaxThreshold
 
 # Coloreando bordes
