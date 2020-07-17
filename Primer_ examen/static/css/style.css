@@ -269,7 +269,6 @@ button:hover {
     height: 100%;
     margin-top: 20px;
     margin-left: 20px;
-    flex: 0 0 300px;
     float: none;
     display: inline-block;
   }
@@ -285,7 +284,6 @@ button:hover {
   }
 
 .cuadro {
-	
     width: 70%;
     margin-top: 20px;
     margin-left: 100px;
