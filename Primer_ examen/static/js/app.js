@@ -4,27 +4,24 @@ var puntos = [];
 
 $(document).on('click', '.remove-img', function () {
 
-    if(document.getElementById("operador2").value != "puntos") {
+	$(this).parent().remove(); 
+	i = i - 1
 
-    	$(this).parent().remove(); 
-    	i = i - 1
+	if (i == 1) {
+    	$("#cuadro").addClass("temp");
+    }
 
-    	if (i == 1) {
-        	$("#cuadro").addClass("temp");
-        }
+    document.getElementById("file").value = null;
 
-        document.getElementById("file").value = null;
-
-        $.ajax({ 
-                url: '/remove',
-                data: 'remove',
-                type: 'POST'
-            }).done(function(data) {
-                //console.log(data.state)
-            }).fail(function() {
-                console.log('Failed');
-            });        
-    }    
+    $.ajax({ 
+            url: '/remove',
+            data: 'remove',
+            type: 'POST'
+        }).done(function(data) {
+            //console.log(data.state)
+        }).fail(function() {
+            console.log('Failed');
+    });        
 
 });
 
@@ -162,6 +159,11 @@ $(document).ready(function() {
 
     $("#file").on('change', function (event){
 
+        var loading = $('<span> </span>', { 
+        });
+
+        loading.appendTo($('form'));   
+
         $("#cuadro").removeClass("temp");
 
         event.preventDefault();
@@ -187,16 +189,22 @@ $(document).ready(function() {
                 url: '/mostrar',
                 contentType: false,
                 cache: false,
-                processData: false
+                processData: false,
+                beforeSend: function(){
+                    loading.addClass("loader");
+                }
             })
             .done(function(data) {
+
                 if(data.error) {
                     console.log("Error");
                 }
                 else {
 
-                	var div = $('<div> </div>', { 
-					});
+                    loading.removeClass("loader");
+
+                    var div = $('<div> </div>', { 
+                    });
 
 					div.addClass("imagen");
 
@@ -206,12 +214,17 @@ $(document).ready(function() {
                 	  id: 'imagen'+i,
 					});
 
+                    var borrar = $('<button type="button">X</button>', {
+                    });
+
+                    borrar.addClass('remove-img');
+
                 	var img = $('<img >', { 
                 	  id: 'imagen'+i,
 					});
 
 					div.append(h2)
-					img.addClass("remove-img")
+					div.append(borrar)
 					div.append(img)
 
                     $('#imagen'+i).prop("src", '/static/images/' + data.name);
@@ -224,8 +237,12 @@ $(document).ready(function() {
 
     $('form').on('submit', function(event) {
 
-        //console.log(puntos)            
+        //console.log(puntos)   
+        var loading = $('<span> </span>', { 
+        });
 
+        loading.appendTo($('form'));   
+    
         event.preventDefault();     
 
         if (puntos.length==0) {
@@ -253,12 +270,16 @@ $(document).ready(function() {
                     punto_4x: puntos[3][0],
                     punto_4y: puntos[3][1]
                 },
-            type: 'POST'
+            type: 'POST',
+            beforeSend: function(){
+                loading.addClass("loader");
+            }
         }).done(function(data) {
 
+            loading.removeClass("loader");
 
-        	var div = $('<div> </div>', { 
-			});
+            var div = $('<div> </div>', { 
+            });
 
 			div.addClass("imagen");
 
@@ -277,13 +298,17 @@ $(document).ready(function() {
                   id: 'imagen'+i
                 });
             }
+            var borrar = $('<button type="button">X</button>', {
+                    });
+
+            borrar.addClass('remove-img');
 
         	var img = $('<img >', { 
             	  id: 'imagen'+i
 				});
 
 			div.append(h2)
-			img.addClass("remove-img")
+            div.append(borrar)
 			div.append(img)
 
             var source = '/static/images/' +data.name,
