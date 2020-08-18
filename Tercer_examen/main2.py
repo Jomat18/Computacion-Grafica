@@ -48,18 +48,10 @@ for img_pair_1, img_pair_2 in img_pairs:
     matches = bf.knnMatch(des1,des2, k=2)
     #print (matches)
 
-    # Almacenar todas coincidencias con el ratio propuesto por Lowe 0.7
-    good = []
-    for m,n in matches:
-            if m.distance < 0.7*n.distance:
-                    good.append(m)
-
-
     # Ordenando según el concepto de distancia mínima en orden ascendente
     topMatches=sorted(good,key=lambda x:x.distance)
 
     # Crear un mapa para las mejores coincidencias 
-    # después de que se establezca el criterio de buena coincidencia según Lowe.
     img_match = cv2.drawMatches(img1,kp1,img2,kp2,topMatches[:top_matches],None,flags=2)
 
     # Mostrando
@@ -70,9 +62,6 @@ for img_pair_1, img_pair_2 in img_pairs:
     # Elegir solo las mejores opciones
     pts1 = np.float32([ kp1[m.queryIdx].pt for m in topMatches[:top_matches] ]).reshape(-1,1,2)
     pts2 = np.float32([ kp2[m.trainIdx].pt for m in topMatches[:top_matches] ]).reshape(-1,1,2)
-
-    #pts1 = np.float32([ kp1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
-    #pts2 = np.float32([ kp2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
 
     #print pts2
 

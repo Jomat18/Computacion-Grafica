@@ -22,7 +22,6 @@ K = np.array([[518.86, 0., 285.58],   #[ fm_x   0     C_x]
               [0., 519.47, 213.74],   #[ 0      fm_y  C_y]
               [0.,   0.,   1.]])      #[ 0      0      1 ]
 
-point_imagen = []
 
 for img_pair_1, img_pair_2 in img_pairs:
     counter += 1
@@ -116,7 +115,7 @@ for img_pair_1, img_pair_2 in img_pairs:
     # K_normal=[[1.0,0.0,0.0,0.0,1.0,0.0,0,0,1]]
     # K_normal=np.array(K).reshape(3,3)
 
-    # Decomposing E to get R and T, Reconstruccion inicial
+    # Descomponiendo E para obtener R y T, Reconstruccion inicial
     points, R, t, mask = cv2.recoverPose(E, p1, p2)
     print("Matriz de Rotacion:")
     print(R)
@@ -129,7 +128,7 @@ for img_pair_1, img_pair_2 in img_pairs:
     p2_tmp[:2,:] = np.squeeze(p2).T
     #print((np.dot(R, p2_tmp) + t) - p1_tmp)
 
-    #4 - Triangulacion linear
+    #4 - Triangulacion lineal
     # Calculamos la matriz de Proyecciones para ambas camaras
     M_r = np.hstack((R, t))
     M_l = np.hstack((np.eye(3, 3), np.zeros((3, 1))))
