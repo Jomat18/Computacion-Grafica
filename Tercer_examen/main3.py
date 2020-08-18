@@ -3,9 +3,9 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import cv2
 
-import structure
-import processor
-import features
+import calcular
+import procesar
+import keypoint
 
 fig2 = plt.figure()
 fig2.suptitle('3D reconstruido', fontsize=16)
@@ -18,9 +18,9 @@ ax.set_zlabel('Z Label')
 img1=cv2.imread("viff.000.ppm")
 img2=cv2.imread("viff.001.ppm")             
 
-pts1, pts2 = features.find_correspondence_points(img1, img2)
-points1 = processor.cart2hom(pts1)
-points2 = processor.cart2hom(pts2)
+pts1, pts2 = keypoint.find_correspondence_points(img1, img2)
+points1 = procesar.cart2hom(pts1)
+points2 = procesar.cart2hom(pts2)
 
 fig, ax2 = plt.subplots(1, 2)
 ax2[0].autoscale_view('tight')
@@ -40,16 +40,16 @@ intrinsic = np.array([
 
 points1n = np.dot(np.linalg.inv(intrinsic), points1)
 points2n = np.dot(np.linalg.inv(intrinsic), points2)
-E = structure.compute_essential_normalized(points1n, points2n)
+E = calcular.compute_essential_normalized(points1n, points2n)
 print('Matriz Esencial:', (-E / E[0][1]))
 
 P1 = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]])
-P2s = structure.compute_P_from_essential(E)
+P2s = calcular.compute_P_from_essential(E)
 
 ind = -1
 for i, P2 in enumerate(P2s):
 
-    d1 = structure.reconstruct_one_point(
+    d1 = calcular.reconstruct_one_point(
         points1n[:, 0], points2n[:, 0], P1, P2)
 
     P2_homogenous = np.linalg.inv(np.vstack([P2, [0, 0, 0, 1]]))
@@ -60,7 +60,7 @@ for i, P2 in enumerate(P2s):
 
 P2 = np.linalg.inv(np.vstack([P2s[ind], [0, 0, 0, 1]]))[:3, :4]
 
-tripoints3d = structure.linear_triangulation(points1n, points2n, P1, P2)
+tripoints3d = calcular.linear_triangulation(points1n, points2n, P1, P2)
 
 ax.scatter(tripoints3d[0], tripoints3d[1], tripoints3d[2], c="black", marker="o")
 

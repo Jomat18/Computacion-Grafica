@@ -48,6 +48,11 @@ for img_pair_1, img_pair_2 in img_pairs:
     matches = bf.knnMatch(des1,des2, k=2)
     #print (matches)
 
+    good = []
+    for m,n in matches:
+        if m.distance < 0.8 * n.distance:  #H/F
+            good.append(m)
+
     # Ordenando según el concepto de distancia mínima en orden ascendente
     topMatches=sorted(good,key=lambda x:x.distance)
 

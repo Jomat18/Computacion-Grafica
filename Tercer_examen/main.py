@@ -51,6 +51,7 @@ for img_pair_1, img_pair_2 in img_pairs:
     #keypoint,w2=des2.shape
 
     # Usar flann para realizar la coincidencia de caracteriticas
+    # FLANN son las siglas de Fast Library para los vecinos más cercanos aproximados. 
     FLANN_INDEX_KDTREE = 0
     index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
     search_params = dict(checks = 50)
@@ -58,9 +59,6 @@ for img_pair_1, img_pair_2 in img_pairs:
     flann = cv2.FlannBasedMatcher(index_params, search_params)
 
     matches = flann.knnMatch(des1,des2,k=2)
-
-    # Las parejas con menor distancia son las que queremos.
-    #matches = sorted(matches, key = lambda x : x.distance)  #matches[:50]
 
     # Almacenar todas coincidencias con el ratio propuesto por Lowe 0.7
     good = []
@@ -162,3 +160,11 @@ for img_pair_1, img_pair_2 in img_pairs:
 
     plt.show()        
     print ()    
+
+
+# El primer paso en la reconstrucción mediante múltiples imágenes en este proyecto
+# consiste en encontrar una estructura base de la escena. Para esto se comprueban todas
+# las imágenes entre ellas para encontrar el par que más puntos triangulados obtenga. A
+# partir de esta base, se van añadiendo más vistas hasta que estén todas en el modelo.
+
+# si se obtiene la matriz esencial se puede saber la posición de las cámaras y hacia dónde están mirando.    
