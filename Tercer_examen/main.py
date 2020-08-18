@@ -3,16 +3,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-MIN_MATCH_COUNT = 10 #25
+MIN_MATCH_COUNT = 25 #10
 
 # Cargar diferentes pares de imagenes
+
 img_pairs = [("imagen1.jpg", "imagen2.jpg"),
              ("imagen2.jpg", "imagen3.jpg"),
              ("imagen1.jpg", "imagen3.jpg")]
 
-#img_pairs = [("viff.000.ppm","viff.001.ppm"),
-#             ("viff.001.ppm","viff.002.ppm"),
-#             ("viff.000.ppm","viff.002.ppm")]
+'''
+img_pairs = [("viff.000.ppm","viff.001.ppm"),
+             ("viff.001.ppm","viff.002.ppm"),
+             ("viff.000.ppm","viff.002.ppm")]
+'''             
 counter = 0
 
 # Creando la matriz intrinseca K
@@ -67,7 +70,7 @@ for img_pair_1, img_pair_2 in img_pairs:
     # Almacenar todas coincidencias con el ratio propuesto por Lowe 0.7
     good = []
     for m,n in matches:
-        if m.distance < 0.7 * n.distance:  #H/F
+        if m.distance < 0.8 * n.distance:  #H/F
             good.append(m)
 
 
@@ -153,6 +156,7 @@ for img_pair_1, img_pair_2 in img_pairs:
     #5 - Puntos de Salida en 3D
     #Mostrar puntos 3D
     fig = plt.figure()
+    fig.suptitle('3D reconstruido', fontsize=16)
     ax = fig.add_subplot(111, projection='3d')
     ax.set_xlabel('X Label')
     ax.set_ylabel('Y Label')
@@ -161,6 +165,5 @@ for img_pair_1, img_pair_2 in img_pairs:
     for x, y, z in point_3d:
         ax.scatter(x, y, z, c="b", marker="o")
 
-    plt.show()    
-
-    print ()
+    plt.show()        
+    print ()    
