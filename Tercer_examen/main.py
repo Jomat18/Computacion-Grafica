@@ -11,11 +11,6 @@ img_pairs = [("imagen1.jpg", "imagen2.jpg"),
              ("imagen2.jpg", "imagen3.jpg"),
              ("imagen1.jpg", "imagen3.jpg")]
 
-'''
-img_pairs = [("viff.000.ppm","viff.001.ppm"),
-             ("viff.001.ppm","viff.002.ppm"),
-             ("viff.000.ppm","viff.002.ppm")]
-'''             
 counter = 0
 
 # Creando la matriz intrinseca K
